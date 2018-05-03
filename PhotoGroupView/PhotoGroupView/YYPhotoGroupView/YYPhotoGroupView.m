@@ -672,7 +672,7 @@ static CGSize CGSizePixelCeil(CGSize size){
 
 - (void)hidePager{
     [UIView animateWithDuration:0.3 delay:0.8 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut animations:^{
-        _pager.alpha = 0;
+        self.pager.alpha = 0;
     } completion:nil];
 }
 
@@ -790,8 +790,8 @@ static CGSize CGSizePixelCeil(CGSize size){
             
             alpha = YY_CLAMP(alpha, 0, 1);
             [UIView animateKeyframesWithDuration:0.1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveLinear animations:^{
-                _blurBackground.alpha = alpha;
-                _pager.alpha = alpha;
+                self.blurBackground.alpha = alpha;
+                self.pager.alpha = alpha;
             } completion:^(BOOL finished) {
                 
             }];
@@ -821,12 +821,12 @@ static CGSize CGSizePixelCeil(CGSize size){
                 duration *= 0.8;
                 duration = YY_CLAMP(duration, 0.05, 0.3);
                 [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
-                    _blurBackground.alpha = 0;
-                    _pager.alpha = 0;
+                    self.blurBackground.alpha = 0;
+                    self.pager.alpha = 0;
                     if (moveToTop) {
-                        _scrollView.bottom = 0;
+                        self.scrollView.bottom = 0;
                     }else{
-                        _scrollView.top = self.height;
+                        self.scrollView.top = self.height;
                     }
                 } completion:^(BOOL finished) {
                     [self removeFromSuperview];
@@ -840,9 +840,9 @@ static CGSize CGSizePixelCeil(CGSize size){
                 [_background.layer addAnimation:transition forKey:@"yykit.fade"];
             }else{
                 [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:v.y / 1000 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
-                    _scrollView.top = 0;
-                    _blurBackground.alpha = 1;
-                    _pager.alpha = 1;
+                    self.scrollView.top = 0;
+                    self.blurBackground.alpha = 1;
+                    self.pager.alpha = 1;
                 } completion:^(BOOL finished) {
                     
                 }];
@@ -861,13 +861,5 @@ static CGSize CGSizePixelCeil(CGSize size){
             break;
     }
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end
