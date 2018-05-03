@@ -21,7 +21,7 @@ class SecondViewController: UIViewController {
 extension SecondViewController: BackButtonHandlerProtocol {
     
     func navigationShouldPopOnBackButton() -> Bool {
-        return false
+        return true
     }
     
 }
