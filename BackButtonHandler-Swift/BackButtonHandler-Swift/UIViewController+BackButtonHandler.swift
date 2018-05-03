@@ -20,14 +20,15 @@ extension UINavigationController: UINavigationBarDelegate {
             return true
         }
         
-        
+        guard let topVC: UIViewController = self.topViewController else {
+            return false
+        }
 
         var shouldPop: Bool = true
-        let vc: UIViewController = self.topViewController!
         
         let sel = NSSelectorFromString("navigationShouldPopOnBackButton")
         
-        if(vc.responds(to: sel) && vc.perform(sel) == nil) {
+        if(topVC.responds(to: sel) && topVC.perform(sel) == nil) {
             shouldPop = false
         }
 
@@ -43,6 +44,7 @@ extension UINavigationController: UINavigationBarDelegate {
                 })
             }
         }
+        
         return false
     }
 
