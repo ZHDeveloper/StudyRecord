@@ -33,7 +33,7 @@ NSString *const kCellIdentify = @"kCellIdentify";
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellIdentify];
     
-    self.tableView.scaleImage = [UIImage imageNamed:@"large-web-banner"];
+    self.tableView.scaleImage = [UIImage imageNamed:@"def"];
     self.tableView.scaleImageHeight = 200;
     
     UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
