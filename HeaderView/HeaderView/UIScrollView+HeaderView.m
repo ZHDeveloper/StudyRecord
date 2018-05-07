@@ -81,7 +81,7 @@ void *const kNaviBar = "kNaviBar";
         self.scaleBar.zh_y = 0;
         self.scaleBar.zh_height = self.scaleImageHeight - distance;
         // 下面改过它的alpha覆盖设置
-        self.imageView.alpha = 1;
+        self.imageView.alpha = 1;        
     }
     else {
         self.scaleBar.zh_height = self.scaleImageHeight;
