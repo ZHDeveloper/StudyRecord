@@ -34,7 +34,7 @@ void *const kNaviBar = "kNaviBar";
     CGFloat x = self.frame.origin.x;
     CGFloat y = self.frame.origin.y;
     
-    self.scaleBar.frame = CGRectMake(x, y, self.zh_width, self.scaleImageHeight);
+    self.headerView.frame = CGRectMake(x, y, self.zh_width, self.scaleImageHeight);
     self.contentInset = UIEdgeInsetsMake(self.scaleImageHeight, 0, 0, 0);
     
     self.scrollIndicatorInsets = self.contentInset;
@@ -44,21 +44,21 @@ void *const kNaviBar = "kNaviBar";
     [super updateConstraints];
     
     if (!self.imageView.superview) {
-        [self.scaleBar addSubview:self.lineView];
-        [self.scaleBar addSubview:self.imageView];
+        [self.headerView addSubview:self.lineView];
+        [self.headerView addSubview:self.imageView];
     }
     
     self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.lineView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [[self.imageView.leftAnchor constraintEqualToAnchor:self.scaleBar.leftAnchor] setActive:YES];
-    [[self.imageView.rightAnchor constraintEqualToAnchor:self.scaleBar.rightAnchor] setActive:YES];
-    [[self.imageView.topAnchor constraintEqualToAnchor:self.scaleBar.topAnchor] setActive:YES];
-    [[self.imageView.bottomAnchor constraintEqualToAnchor:self.scaleBar.bottomAnchor] setActive:YES];
+    [[self.imageView.leftAnchor constraintEqualToAnchor:self.headerView.leftAnchor] setActive:YES];
+    [[self.imageView.rightAnchor constraintEqualToAnchor:self.headerView.rightAnchor] setActive:YES];
+    [[self.imageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor] setActive:YES];
+    [[self.imageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor] setActive:YES];
     
-    [[self.lineView.leftAnchor constraintEqualToAnchor:self.scaleBar.leftAnchor] setActive:YES];
-    [[self.lineView.rightAnchor constraintEqualToAnchor:self.scaleBar.rightAnchor] setActive:YES];
-    [[self.lineView.bottomAnchor constraintEqualToAnchor:self.scaleBar.bottomAnchor] setActive:YES];
+    [[self.lineView.leftAnchor constraintEqualToAnchor:self.headerView.leftAnchor] setActive:YES];
+    [[self.lineView.rightAnchor constraintEqualToAnchor:self.headerView.rightAnchor] setActive:YES];
+    [[self.lineView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor] setActive:YES];
     [[self.lineView.heightAnchor constraintEqualToConstant:1] setActive:YES];
 }
 
@@ -75,10 +75,10 @@ void *const kNaviBar = "kNaviBar";
 
     //添加子控件
     if (!self.imageView.superview) {
-        [self.scaleBar addSubview:self.imageView];
-        [self.scaleBar addSubview:self.lineView];
+        [self.headerView addSubview:self.imageView];
+        [self.headerView addSubview:self.lineView];
     }
-    [self.superview insertSubview:self.scaleBar aboveSubview:self];
+    [self.superview insertSubview:self.headerView aboveSubview:self];
     
     [self parentViewController].automaticallyAdjustsScrollViewInsets = NO;
 }
@@ -91,24 +91,24 @@ void *const kNaviBar = "kNaviBar";
     
     //向下拉
     if (distance < 0) {
-        self.scaleBar.zh_y = 0;
-        self.scaleBar.zh_height = self.scaleImageHeight - distance;
+        self.headerView.zh_y = 0;
+        self.headerView.zh_height = self.scaleImageHeight - distance;
         // 下面改过它的alpha覆盖设置
         self.imageView.alpha = 1;
     }
     else {
-        self.scaleBar.zh_height = self.scaleImageHeight;
+        self.headerView.zh_height = self.scaleImageHeight;
         
         // 最多向上滚动的距离
         CGFloat min = self.scaleImageHeight - 64;
-        self.scaleBar.zh_y = -MIN(distance, min);
+        self.headerView.zh_y = -MIN(distance, min);
         
         CGFloat progress = 1 - distance / min;
         
         self.imageView.alpha = progress;
     }
     
-    self.scaleBar.zh_width = self.zh_width;
+    self.headerView.zh_width = self.zh_width;
 }
 
 - (void)dealloc {
@@ -116,7 +116,7 @@ void *const kNaviBar = "kNaviBar";
     [self removeObserver:self forKeyPath:@"contentOffset"];
 }
 
-- (UIView *)scaleBar {
+- (UIView *)headerView {
     UIView *headerView = objc_getAssociatedObject(self, kNaviBar);
     
     if (!headerView) {

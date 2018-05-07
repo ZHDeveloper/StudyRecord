@@ -38,7 +38,7 @@ NSString *const kCellIdentify = @"kCellIdentify";
     
     UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     
-    [self.tableView.scaleBar addGestureRecognizer:tapGest];
+    [self.tableView.headerView addGestureRecognizer:tapGest];
 }
 
 - (void)tapAction:(UITapGestureRecognizer *)gest {
@@ -59,7 +59,7 @@ NSString *const kCellIdentify = @"kCellIdentify";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentify];
     
-//    cell.textLabel.text = [NSString stringWithFormat:@"Demo--%d",indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Demo--%ld",indexPath.row];
     
     return cell;
 }
