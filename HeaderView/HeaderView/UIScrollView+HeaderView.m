@@ -12,13 +12,18 @@
 void *const kScaleImage = "kScaleImage";
 void *const kScaleImageHeight = "kScaleImageHeight";
 void *const kImageView = "kImageView";
+void *const kLineView = "kLineView";
 void *const kNaviBar = "kNaviBar";
 
 #define NaviBarColor kColorHex(0xF8F8F8)
-#define LineLayerColor kColorHex(0xD9D9D9)
+#define LineColor kColorHex(0xD9D9D9)
 #define kColorHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface UIScrollView ()
+
+@property (nonatomic,strong,readonly) UIImageView *imageView;
+
+@property (nonatomic,strong,readonly) UIView *lineView;
 
 @end
 
@@ -39,15 +44,22 @@ void *const kNaviBar = "kNaviBar";
     [super updateConstraints];
     
     if (!self.imageView.superview) {
+        [self.scaleBar addSubview:self.lineView];
         [self.scaleBar addSubview:self.imageView];
     }
     
     self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.lineView.translatesAutoresizingMaskIntoConstraints = NO;
     
     [[self.imageView.leftAnchor constraintEqualToAnchor:self.scaleBar.leftAnchor] setActive:YES];
     [[self.imageView.rightAnchor constraintEqualToAnchor:self.scaleBar.rightAnchor] setActive:YES];
     [[self.imageView.topAnchor constraintEqualToAnchor:self.scaleBar.topAnchor] setActive:YES];
     [[self.imageView.bottomAnchor constraintEqualToAnchor:self.scaleBar.bottomAnchor] setActive:YES];
+    
+    [[self.lineView.leftAnchor constraintEqualToAnchor:self.scaleBar.leftAnchor] setActive:YES];
+    [[self.lineView.rightAnchor constraintEqualToAnchor:self.scaleBar.rightAnchor] setActive:YES];
+    [[self.lineView.bottomAnchor constraintEqualToAnchor:self.scaleBar.bottomAnchor] setActive:YES];
+    [[self.lineView.heightAnchor constraintEqualToConstant:1] setActive:YES];
 }
 
 - (void)didMoveToSuperview {
@@ -64,6 +76,7 @@ void *const kNaviBar = "kNaviBar";
     //添加子控件
     if (!self.imageView.superview) {
         [self.scaleBar addSubview:self.imageView];
+        [self.scaleBar addSubview:self.lineView];
     }
     [self.superview insertSubview:self.scaleBar aboveSubview:self];
     
@@ -81,7 +94,7 @@ void *const kNaviBar = "kNaviBar";
         self.scaleBar.zh_y = 0;
         self.scaleBar.zh_height = self.scaleImageHeight - distance;
         // 下面改过它的alpha覆盖设置
-        self.imageView.alpha = 1;        
+        self.imageView.alpha = 1;
     }
     else {
         self.scaleBar.zh_height = self.scaleImageHeight;
@@ -104,17 +117,33 @@ void *const kNaviBar = "kNaviBar";
     [self removeObserver:self forKeyPath:@"contentOffset"];
 }
 
-- (UINavigationBar *)scaleBar {
-    UINavigationBar *headerView = objc_getAssociatedObject(self, kNaviBar);
+- (UIView *)scaleBar {
+    UIView *headerView = objc_getAssociatedObject(self, kNaviBar);
     
     if (!headerView) {
-        headerView = [[UINavigationBar alloc] init];
+        headerView = [[UIView alloc] init];
+        headerView.backgroundColor = NaviBarColor;
         objc_setAssociatedObject(self, kNaviBar, headerView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return headerView;
     }
     
     return headerView;
 }
+
+- (UIView *)lineView {
+    
+    UIView *lineView = objc_getAssociatedObject(self, kLineView);
+    
+    if (!lineView) {
+        lineView = [[UIView alloc] init];
+        lineView.backgroundColor = LineColor;
+        objc_setAssociatedObject(self, kLineView, lineView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return lineView;
+    }
+    
+    return lineView;
+}
+
 
 - (UIImageView *)imageView {
 
@@ -125,7 +154,6 @@ void *const kNaviBar = "kNaviBar";
         
         imageView.clipsToBounds = YES;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.userInteractionEnabled = YES;
 
         objc_setAssociatedObject(self, kImageView, imageView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 

@@ -38,7 +38,7 @@ NSString *const kCellIdentify = @"kCellIdentify";
     
     UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     
-    [self.tableView.imageView addGestureRecognizer:tapGest];
+    [self.tableView.scaleBar addGestureRecognizer:tapGest];
 }
 
 - (void)tapAction:(UITapGestureRecognizer *)gest {

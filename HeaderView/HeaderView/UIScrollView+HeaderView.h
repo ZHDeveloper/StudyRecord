@@ -10,9 +10,7 @@
 
 @interface UIScrollView (HeaderScaleView)
 
-@property (nonatomic,strong,readonly) UINavigationBar *scaleBar;
-
-@property (nonatomic,strong,readonly) UIImageView *imageView;
+@property (nonatomic,strong,readonly) UIView *scaleBar;
 
 @property (nonatomic,strong) UIImage *scaleImage;
 
