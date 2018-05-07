@@ -34,9 +34,6 @@
 		020BBDC5209FED660048C686 /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 020BBDB2209FED650048C686 /* UIImage+YYWebImage.m */; };
 		020BBDC6209FED660048C686 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 020BBDB3209FED650048C686 /* CALayer+YYWebImage.m */; };
 		020BBDC7209FED660048C686 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 020BBDB5209FED650048C686 /* YYWebImageOperation.m */; };
-		020BBDD520A01B390048C686 /* MTKDeallocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 020BBDCE20A01B390048C686 /* MTKDeallocator.m */; };
-		020BBDD620A01B390048C686 /* MTKObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 020BBDD220A01B390048C686 /* MTKObserver.m */; };
-		020BBDD720A01B390048C686 /* NSObject+MTKObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 020BBDD420A01B390048C686 /* NSObject+MTKObserving.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,14 +91,6 @@
 		020BBDB3209FED650048C686 /* CALayer+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+YYWebImage.m"; sourceTree = "<group>"; };
 		020BBDB4209FED650048C686 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
 		020BBDB5209FED650048C686 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
-		020BBDCD20A01B390048C686 /* MTKObservingMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTKObservingMacros.h; sourceTree = "<group>"; };
-		020BBDCE20A01B390048C686 /* MTKDeallocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTKDeallocator.m; sourceTree = "<group>"; };
-		020BBDCF20A01B390048C686 /* MTKObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTKObserver.h; sourceTree = "<group>"; };
-		020BBDD020A01B390048C686 /* NSObject+MTKObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MTKObserving.h"; sourceTree = "<group>"; };
-		020BBDD120A01B390048C686 /* MTKObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTKObserving.h; sourceTree = "<group>"; };
-		020BBDD220A01B390048C686 /* MTKObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTKObserver.m; sourceTree = "<group>"; };
-		020BBDD320A01B390048C686 /* MTKDeallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTKDeallocator.h; sourceTree = "<group>"; };
-		020BBDD420A01B390048C686 /* NSObject+MTKObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MTKObserving.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +131,6 @@
 				020BBD70209FDD600048C686 /* ViewController.m */,
 				020BBD82209FDD8E0048C686 /* UIScrollView+HeaderView.h */,
 				020BBD83209FDD8E0048C686 /* UIScrollView+HeaderView.m */,
-				020BBDCC20A01B390048C686 /* Sources */,
 				020BBD72209FDD600048C686 /* Main.storyboard */,
 				020BBD75209FDD610048C686 /* Assets.xcassets */,
 				020BBD77209FDD610048C686 /* LaunchScreen.storyboard */,
@@ -231,21 +219,6 @@
 				020BBDB3209FED650048C686 /* CALayer+YYWebImage.m */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		020BBDCC20A01B390048C686 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				020BBDCD20A01B390048C686 /* MTKObservingMacros.h */,
-				020BBDCE20A01B390048C686 /* MTKDeallocator.m */,
-				020BBDCF20A01B390048C686 /* MTKObserver.h */,
-				020BBDD020A01B390048C686 /* NSObject+MTKObserving.h */,
-				020BBDD120A01B390048C686 /* MTKObserving.h */,
-				020BBDD220A01B390048C686 /* MTKObserver.m */,
-				020BBDD320A01B390048C686 /* MTKDeallocator.h */,
-				020BBDD420A01B390048C686 /* NSObject+MTKObserving.m */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,11 +310,8 @@
 				020BBDBE209FED660048C686 /* YYImageCoder.m in Sources */,
 				020BBDBC209FED660048C686 /* YYSpriteSheetImage.m in Sources */,
 				020BBDC2209FED660048C686 /* UIButton+YYWebImage.m in Sources */,
-				020BBDD720A01B390048C686 /* NSObject+MTKObserving.m in Sources */,
-				020BBDD520A01B390048C686 /* MTKDeallocator.m in Sources */,
 				020BBDC6209FED660048C686 /* CALayer+YYWebImage.m in Sources */,
 				020BBDBA209FED660048C686 /* YYMemoryCache.m in Sources */,
-				020BBDD620A01B390048C686 /* MTKObserver.m in Sources */,
 				020BBD6E209FDD600048C686 /* AppDelegate.m in Sources */,
 				020BBD8B209FEC280048C686 /* UINavigationController+FullscreenPopGesture.m in Sources */,
 				020BBD84209FDD8E0048C686 /* UIScrollView+HeaderView.m in Sources */,

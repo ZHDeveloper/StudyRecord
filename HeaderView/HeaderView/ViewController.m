@@ -37,6 +37,11 @@ NSString *const kCellIdentify = @"kCellIdentify";
     self.tableView.scaleImage = [UIImage imageNamed:@"large-web-banner"];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
+}
+
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 100;

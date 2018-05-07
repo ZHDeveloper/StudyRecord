@@ -7,7 +7,6 @@
 //
 
 #import "UIScrollView+HeaderView.h"
-#import "NSObject+MTKObserving.h"
 #import <objc/runtime.h>
 
 void *const kScaleImage = "kScaleImage";
@@ -29,6 +28,8 @@ void *const kNaviBar = "kNaviBar";
 
 - (void)layoutImageView {
     
+    if (![self isKindOfClass:[UITableView class]]) { return; }
+    
     CGFloat x = self.frame.origin.x;
     CGFloat y = self.frame.origin.y;
     
@@ -38,56 +39,66 @@ void *const kNaviBar = "kNaviBar";
     self.scrollIndicatorInsets = self.contentInset;
     
     self.imageView.frame = self.scaleBar.bounds;
+    
+    NSLog(@"%@",NSStringFromCGRect(self.frame));
+    NSLog(@"frame:%@",NSStringFromCGRect(CGRectMake(x, y, CGRectGetWidth(self.bounds), self.scaleImageHeight)));
 }
 
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
-    
-    if (!self.scaleBar.superview) {
-        [self.scaleBar addSubview:self.imageView];
-        [self.superview insertSubview:self.scaleBar aboveSubview:self];
-    }
-    
-    [self parentViewController].automaticallyAdjustsScrollViewInsets = NO;
     
     //添加观察者,确保只添加一次
     if (objc_getAssociatedObject(self, _cmd)) { return; }
     objc_setAssociatedObject(self, _cmd, @"LaunchOnce", OBJC_ASSOCIATION_RETAIN);
     
     [self addObserver:self forKeyPath:@"contentOffset" options:(NSKeyValueObservingOptionNew) context:nil];
+    
+    //监听父view的变化
+    [self.superview addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+
+    //添加子控件
+    [self.scaleBar addSubview:self.imageView];
+    [self.superview insertSubview:self.scaleBar aboveSubview:self];
+
+    [self parentViewController].automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-
+    
     if (self.scaleImageHeight == 0) { return; }
     
-    CGFloat distance = self.contentOffset.y + self.contentInset.top;
-    
-    //向下拉
-    if (distance < 0) {
-        self.scaleBar.zh_y = 0;
-        self.scaleBar.zh_height = self.scaleImageHeight - distance;
-        // 下面改过它的alpha覆盖设置
-        self.imageView.alpha = 1;
+    if ([keyPath isEqualToString:@"contentOffset"]) {
+        CGFloat distance = self.contentOffset.y + self.contentInset.top;
+        
+        //向下拉
+        if (distance < 0) {
+            self.scaleBar.zh_y = 0;
+            self.scaleBar.zh_height = self.scaleImageHeight - distance;
+            // 下面改过它的alpha覆盖设置
+            self.imageView.alpha = 1;
+        }
+        else {
+            self.scaleBar.zh_height = self.scaleImageHeight;
+            
+            // 最多向上滚动的距离
+            CGFloat min = self.scaleImageHeight - 64;
+            self.scaleBar.zh_y = -MIN(distance, min);
+            
+            CGFloat progress = 1 - distance / min;
+            
+            self.imageView.alpha = progress;
+        }
+        
+        self.imageView.zh_height = self.scaleBar.zh_height;
     }
     else {
-        self.scaleBar.zh_height = self.scaleImageHeight;
-        
-        // 最多向上滚动的距离
-        CGFloat min = self.scaleImageHeight - 64;
-        self.scaleBar.zh_y = -MIN(distance, min);
-        
-        CGFloat progress = 1 - distance / min;
-        
-        self.imageView.alpha = progress;
+        [self layoutImageView];
     }
-    
-    self.imageView.zh_height = self.scaleBar.zh_height;
 }
 
 - (void)layoutSubviews {
-    [super layoutSubviews];
     [self layoutImageView];
+    [super layoutSubviews];
 }
 
 - (void)dealloc {
