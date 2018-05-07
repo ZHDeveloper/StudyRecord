@@ -7,15 +7,21 @@
 //
 
 #import "UIScrollView+HeaderView.h"
+#import "NSObject+MTKObserving.h"
 #import <objc/runtime.h>
 
 void *const kScaleImage = "kScaleImage";
 void *const kScaleImageHeight = "kScaleImageHeight";
 void *const kImageView = "kImageView";
+void *const kNaviBar = "kNaviBar";
+
+#define NaviBarColor kColorHex(0xF8F8F8)
+#define LineLayerColor kColorHex(0xD9D9D9)
+#define kColorHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface UIScrollView ()
 
-@property (nonatomic,strong) UIImageView *imageView;
+@property (nonatomic,strong,readonly) UIImageView *imageView;
 
 @end
 
@@ -26,20 +32,57 @@ void *const kImageView = "kImageView";
     CGFloat x = self.frame.origin.x;
     CGFloat y = self.frame.origin.y;
     
-    self.imageView.frame = CGRectMake(x, y, CGRectGetWidth(self.bounds), self.scaleImageHeight);
+    self.scaleBar.frame = CGRectMake(x, y, CGRectGetWidth(self.bounds), self.scaleImageHeight);
     self.contentInset = UIEdgeInsetsMake(self.scaleImageHeight, 0, 0, 0);
     
     self.scrollIndicatorInsets = self.contentInset;
+    
+    self.imageView.frame = self.scaleBar.bounds;
 }
 
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
     
-    if (!self.imageView.superview) {
-        [self.superview insertSubview:self.imageView aboveSubview:self];
+    if (!self.scaleBar.superview) {
+        [self.scaleBar addSubview:self.imageView];
+        [self.superview insertSubview:self.scaleBar aboveSubview:self];
     }
     
     [self parentViewController].automaticallyAdjustsScrollViewInsets = NO;
+    
+    //添加观察者,确保只添加一次
+    if (objc_getAssociatedObject(self, _cmd)) { return; }
+    objc_setAssociatedObject(self, _cmd, @"LaunchOnce", OBJC_ASSOCIATION_RETAIN);
+    
+    [self addObserver:self forKeyPath:@"contentOffset" options:(NSKeyValueObservingOptionNew) context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+
+    if (self.scaleImageHeight == 0) { return; }
+    
+    CGFloat distance = self.contentOffset.y + self.contentInset.top;
+    
+    //向下拉
+    if (distance < 0) {
+        self.scaleBar.zh_y = 0;
+        self.scaleBar.zh_height = self.scaleImageHeight - distance;
+        // 下面改过它的alpha覆盖设置
+        self.imageView.alpha = 1;
+    }
+    else {
+        self.scaleBar.zh_height = self.scaleImageHeight;
+        
+        // 最多向上滚动的距离
+        CGFloat min = self.scaleImageHeight - 64;
+        self.scaleBar.zh_y = -MIN(distance, min);
+        
+        CGFloat progress = 1 - distance / min;
+        
+        self.imageView.alpha = progress;
+    }
+    
+    self.imageView.zh_height = self.scaleBar.zh_height;
 }
 
 - (void)layoutSubviews {
@@ -48,27 +91,36 @@ void *const kImageView = "kImageView";
 }
 
 - (void)dealloc {
+    [self removeObserver:self forKeyPath:@"contentOffset"];
+}
 
+- (UINavigationBar *)scaleBar {
+    UINavigationBar *headerView = objc_getAssociatedObject(self, kNaviBar);
     
-
+    if (!headerView) {
+        headerView = [[UINavigationBar alloc] init];
+        objc_setAssociatedObject(self, kNaviBar, headerView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        return headerView;
+    }
+    
+    return headerView;
 }
 
 - (UIImageView *)imageView {
-    
+
     UIImageView *imageView = objc_getAssociatedObject(self, kImageView);
-    
+
     if (!imageView) {
         imageView = [[UIImageView alloc] init];
-        imageView.backgroundColor = [UIColor redColor];
-        
         imageView.clipsToBounds = YES;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
 
         objc_setAssociatedObject(self, kImageView, imageView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
+
         return imageView;
     }
-    
+
     return imageView;
 }
 

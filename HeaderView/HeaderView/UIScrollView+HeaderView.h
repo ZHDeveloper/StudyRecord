@@ -10,6 +10,8 @@
 
 @interface UIScrollView (HeaderScaleView)
 
+@property (nonatomic,strong,readonly) UINavigationBar *scaleBar;
+
 @property (nonatomic,strong) UIImage *scaleImage;
 
 @property (nonatomic,assign) CGFloat scaleImageHeight;
