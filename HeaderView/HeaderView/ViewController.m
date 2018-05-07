@@ -33,8 +33,16 @@ NSString *const kCellIdentify = @"kCellIdentify";
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellIdentify];
     
-    self.tableView.scaleImageHeight = 320;
-    self.tableView.scaleImage = [UIImage imageNamed:@"large-web-banner"];    
+    self.tableView.scaleImageHeight = 200;
+    self.tableView.scaleImage = [UIImage imageNamed:@"large-web-banner"];
+    
+    UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    
+    [self.tableView.imageView addGestureRecognizer:tapGest];
+}
+
+- (void)tapAction:(UITapGestureRecognizer *)gest {
+    NSLog(@"---");
 }
 
 - (void)viewDidLayoutSubviews {

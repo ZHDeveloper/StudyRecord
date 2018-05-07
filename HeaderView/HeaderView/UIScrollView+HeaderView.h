@@ -12,6 +12,8 @@
 
 @property (nonatomic,strong,readonly) UINavigationBar *scaleBar;
 
+@property (nonatomic,strong,readonly) UIImageView *imageView;
+
 @property (nonatomic,strong) UIImage *scaleImage;
 
 @property (nonatomic,assign) CGFloat scaleImageHeight;

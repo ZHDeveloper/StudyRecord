@@ -20,8 +20,6 @@ void *const kNaviBar = "kNaviBar";
 
 @interface UIScrollView ()
 
-@property (nonatomic,strong,readonly) UIImageView *imageView;
-
 @end
 
 @implementation UIScrollView (HeaderScaleView)
@@ -76,8 +74,6 @@ void *const kNaviBar = "kNaviBar";
     
     if (self.scaleImageHeight == 0) { return; }
     
-    NSLog(@"KeyPath:%@",keyPath);
-
     CGFloat distance = self.contentOffset.y + self.contentInset.top;
     
     //向下拉
@@ -114,7 +110,6 @@ void *const kNaviBar = "kNaviBar";
     if (!headerView) {
         headerView = [[UINavigationBar alloc] init];
         objc_setAssociatedObject(self, kNaviBar, headerView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
         return headerView;
     }
     
@@ -127,8 +122,10 @@ void *const kNaviBar = "kNaviBar";
 
     if (!imageView) {
         imageView = [[UIImageView alloc] init];
+        
         imageView.clipsToBounds = YES;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.userInteractionEnabled = YES;
 
         objc_setAssociatedObject(self, kImageView, imageView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
