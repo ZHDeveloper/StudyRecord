@@ -87,6 +87,7 @@ void *const kNaviBar = "kNaviBar";
 }
 
 - (void)dealloc {
+    [self removeObserver:self forKeyPath:@"frame"];
     [self removeObserver:self forKeyPath:@"contentOffset"];
 }
 

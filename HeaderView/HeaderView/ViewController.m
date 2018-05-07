@@ -33,7 +33,7 @@ NSString *const kCellIdentify = @"kCellIdentify";
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellIdentify];
     
-    self.tableView.scaleImageHeight = 200;
+    self.tableView.scaleImageHeight = 320;
     self.tableView.scaleImage = [UIImage imageNamed:@"large-web-banner"];
 }
 
