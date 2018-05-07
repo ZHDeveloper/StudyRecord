@@ -31,12 +31,25 @@ void *const kNaviBar = "kNaviBar";
     CGFloat x = self.frame.origin.x;
     CGFloat y = self.frame.origin.y;
     
-    self.scaleBar.frame = CGRectMake(x, y, CGRectGetWidth(self.bounds), self.scaleImageHeight);
+    self.scaleBar.frame = CGRectMake(x, y, self.zh_width, self.scaleImageHeight);
     self.contentInset = UIEdgeInsetsMake(self.scaleImageHeight, 0, 0, 0);
     
     self.scrollIndicatorInsets = self.contentInset;
+}
+
+- (void)updateConstraints {
+    [super updateConstraints];
     
-    self.imageView.frame = self.scaleBar.bounds;
+    if (!self.imageView.superview) {
+        [self.scaleBar addSubview:self.imageView];
+    }
+    
+    self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [[self.imageView.leftAnchor constraintEqualToAnchor:self.scaleBar.leftAnchor] setActive:YES];
+    [[self.imageView.rightAnchor constraintEqualToAnchor:self.scaleBar.rightAnchor] setActive:YES];
+    [[self.imageView.topAnchor constraintEqualToAnchor:self.scaleBar.topAnchor] setActive:YES];
+    [[self.imageView.bottomAnchor constraintEqualToAnchor:self.scaleBar.bottomAnchor] setActive:YES];
 }
 
 - (void)didMoveToSuperview {
@@ -51,15 +64,19 @@ void *const kNaviBar = "kNaviBar";
     [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 
     //添加子控件
-    [self.scaleBar addSubview:self.imageView];
+    if (!self.imageView.superview) {
+        [self.scaleBar addSubview:self.imageView];
+    }
     [self.superview insertSubview:self.scaleBar aboveSubview:self];
-
+    
     [self parentViewController].automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     
     if (self.scaleImageHeight == 0) { return; }
+    
+    NSLog(@"KeyPath:%@",keyPath);
 
     CGFloat distance = self.contentOffset.y + self.contentInset.top;
     
@@ -82,7 +99,7 @@ void *const kNaviBar = "kNaviBar";
         self.imageView.alpha = progress;
     }
     
-    self.scaleBar.zh_width = CGRectGetWidth(self.bounds);
+    self.scaleBar.zh_width = self.zh_width;
     self.imageView.zh_height = self.scaleBar.zh_height;
 }
 
