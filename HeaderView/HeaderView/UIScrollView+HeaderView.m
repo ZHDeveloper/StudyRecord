@@ -109,7 +109,6 @@ void *const kNaviBar = "kNaviBar";
     }
     
     self.scaleBar.zh_width = self.zh_width;
-    self.imageView.zh_height = self.scaleBar.zh_height;
 }
 
 - (void)dealloc {

@@ -10,6 +10,7 @@
 
 @interface UIScrollView (HeaderScaleView)
 
+// 可以添加自定义view
 @property (nonatomic,strong,readonly) UIView *scaleBar;
 
 @property (nonatomic,strong) UIImage *scaleImage;
