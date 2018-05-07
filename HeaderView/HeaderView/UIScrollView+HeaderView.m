@@ -59,7 +59,7 @@ void *const kNaviBar = "kNaviBar";
     [[self.lineView.leftAnchor constraintEqualToAnchor:self.headerView.leftAnchor] setActive:YES];
     [[self.lineView.rightAnchor constraintEqualToAnchor:self.headerView.rightAnchor] setActive:YES];
     [[self.lineView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor] setActive:YES];
-    [[self.lineView.heightAnchor constraintEqualToConstant:1] setActive:YES];
+    [[self.lineView.heightAnchor constraintEqualToConstant:1/[UIScreen mainScreen].scale] setActive:YES];
 }
 
 - (void)didMoveToSuperview {
@@ -135,7 +135,7 @@ void *const kNaviBar = "kNaviBar";
     
     if (!lineView) {
         lineView = [[UIView alloc] init];
-        lineView.backgroundColor = LineColor;
+        lineView.backgroundColor = [UIColor lightGrayColor];
         objc_setAssociatedObject(self, kLineView, lineView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return lineView;
     }
