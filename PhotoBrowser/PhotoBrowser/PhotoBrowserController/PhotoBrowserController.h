@@ -13,7 +13,7 @@
 
 @property (nonatomic,assign) NSInteger currentIndex;
 
-@property (nonatomic, readonly) NSArray <PhotoBrowserItem *> *photoItems;
+@property (nonatomic, strong) NSArray <PhotoBrowserItem *> *photoItems;
 
 @property (nonatomic,strong) UIImage *bgImage;
 

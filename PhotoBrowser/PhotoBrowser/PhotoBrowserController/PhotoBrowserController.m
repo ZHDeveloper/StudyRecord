@@ -11,7 +11,7 @@
 #import "PhotoBrowserCell.h"
 #import "UIView+YYAdd.h"
 
-@interface PhotoBrowserController () {
+@interface PhotoBrowserController () <UIScrollViewDelegate> {
     PhotoBrowserAnimator *_animator;
 }
 
@@ -80,10 +80,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - UICollectionView
-- (void)setPhotoItems:(NSArray<PhotoBrowserItem *> *)photoItems {
-    _photoItems = photoItems;
-
+#pragma mark - UIScrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
+    
+    self.bgImage = self.photoItems[page].thumbImage;
+    
 }
 
 - (void)setBgImage:(UIImage *)bgImage {
