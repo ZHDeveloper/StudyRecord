@@ -86,12 +86,10 @@
 - (void)panAction:(UIPanGestureRecognizer *)gesture {
     
     CGPoint translation = [gesture translationInView:self.view];
-    CGFloat percentage = abs(translation.y) / CGRectGetHeight([UIScreen mainScreen].bounds) / 1.5;
+    CGFloat percentage = fabs(translation.y) / CGRectGetHeight([UIScreen mainScreen].bounds) / 1.5;
     
     CGPoint velocity = [gesture velocityInView:self.view];
     
-    NSLog(@"%lf",translation.y);
-
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
             break;
@@ -101,9 +99,7 @@
         case UIGestureRecognizerStateEnded:
             
             if (percentage > 0.1) {
-                
                 CGFloat top = (velocity.y<0) ? -CGRectGetHeight([UIScreen mainScreen].bounds) : CGRectGetHeight([UIScreen mainScreen].bounds);
-                
                 [UIView animateWithDuration:0.25 animations:^{
                     self.view.alpha = 0;
                     self.scrollView.top = top;
