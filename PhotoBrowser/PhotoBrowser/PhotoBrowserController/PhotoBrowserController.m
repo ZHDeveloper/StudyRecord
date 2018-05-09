@@ -31,7 +31,12 @@
     
     browserVC.currentIndex = index;
     browserVC.photoItems = photoItems;
-    browserVC.animator = [[PhotoBrowserAnimator alloc] initWith:fromView];
+    
+    browserVC.modalPresentationStyle = UIModalPresentationCustom;
+    PhotoBrowserAnimator *animator = [[PhotoBrowserAnimator alloc] initWith:fromView];
+    browserVC.animator = animator;
+    
+    browserVC.transitioningDelegate = animator;
 
     return browserVC;
 }

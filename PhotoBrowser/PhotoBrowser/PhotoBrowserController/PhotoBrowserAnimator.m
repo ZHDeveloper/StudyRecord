@@ -53,6 +53,7 @@
         dummyView.frame = [self presentRectWithImageView:dummyView];
         toView.alpha = 1;
     } completion:^(BOOL finished) {
+        [dummyView removeFromSuperview];
         [transitionContext completeTransition:YES];
     }];
 }
