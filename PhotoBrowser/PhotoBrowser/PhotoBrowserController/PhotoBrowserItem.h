@@ -10,7 +10,7 @@
 
 @interface PhotoBrowserItem : NSObject
 
-@property (nonatomic, strong) UIImage *thumbImage;
+@property (nonatomic, readonly) UIImage *thumbImage;
 
 @property (nonatomic, strong, nullable) UIView *thumbView;
 

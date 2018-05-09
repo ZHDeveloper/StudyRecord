@@ -12,9 +12,9 @@
 
 @implementation PhotoBrowserAnimator 
 
-- (instancetype)initWith:(UIView *)fromView {
+- (instancetype)initWith:(PhotoBrowserItem *)presentItem {
     if ([super init]) {
-        self.fromView = fromView;
+        self.presentItem = presentItem;
     }
     return self;
 }
@@ -35,12 +35,14 @@
     
     UIView *containerView = [transitionContext containerView];
     
-    UIImage *image = [self.fromView snapshotImageAfterScreenUpdates:NO];
+    UIImage *image = self.presentItem.thumbImage;
     UIImageView *dummyView = [[UIImageView alloc] initWithImage: image];
     
     toVC.bgImage = image;
     
-    dummyView.frame = [self.fromView.superview convertRect:self.fromView.frame toView:containerView];
+    UIView *fromView = self.presentItem.thumbView;
+    
+    dummyView.frame = [fromView.superview convertRect:fromView.frame toView:containerView];
     
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
     [containerView addSubview:toView];

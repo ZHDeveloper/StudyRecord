@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoBrowserItem.h"
 
 @interface PhotoBrowserAnimator : NSObject <UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 
-@property (nonatomic,strong) UIView *fromView;
+@property (nonatomic,strong) PhotoBrowserItem *presentItem;
 
-- (instancetype)initWith:(UIView *)fromView;
+- (instancetype)initWith:(PhotoBrowserItem *)presentItem;
 
 @end
