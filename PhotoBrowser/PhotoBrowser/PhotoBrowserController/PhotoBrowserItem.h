@@ -10,6 +10,8 @@
 
 @interface PhotoBrowserItem : NSObject
 
+@property (nonatomic, readonly) UIImage *thumbImage;
+
 @property (nonatomic, strong, nullable) UIView *thumbView;
 
 @property (nonatomic, assign) CGSize largeImageSize;

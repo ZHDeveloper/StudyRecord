@@ -38,6 +38,8 @@
 		026BA69720A05441001B3372 /* PhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA69620A05441001B3372 /* PhotoBrowserController.m */; };
 		026BA69A20A05537001B3372 /* PhotoBrowserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA69920A05537001B3372 /* PhotoBrowserItem.m */; };
 		026BA69D20A056FB001B3372 /* PhotoBrowserAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA69C20A056FB001B3372 /* PhotoBrowserAnimator.m */; };
+		026EA27120A2A3A700C34378 /* PhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 026EA27020A2A3A700C34378 /* PhotoBrowserCell.m */; };
+		026EA27320A2C30000C34378 /* PhotoBrowser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026EA27220A2C30000C34378 /* PhotoBrowser.storyboard */; };
 		CC9434CB02EDDFF196D1C6C7 /* Pods_PhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FB8C371939FE5DDFC97A89 /* Pods_PhotoBrowser.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +105,9 @@
 		026BA69920A05537001B3372 /* PhotoBrowserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserItem.m; sourceTree = "<group>"; };
 		026BA69B20A056FB001B3372 /* PhotoBrowserAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserAnimator.h; sourceTree = "<group>"; };
 		026BA69C20A056FB001B3372 /* PhotoBrowserAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserAnimator.m; sourceTree = "<group>"; };
+		026EA26F20A2A3A700C34378 /* PhotoBrowserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserCell.h; sourceTree = "<group>"; };
+		026EA27020A2A3A700C34378 /* PhotoBrowserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserCell.m; sourceTree = "<group>"; };
+		026EA27220A2C30000C34378 /* PhotoBrowser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoBrowser.storyboard; sourceTree = "<group>"; };
 		21FB8C371939FE5DDFC97A89 /* Pods_PhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB1DDB3DE3FF14CA33813DD /* Pods-PhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBrowser/Pods-PhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 		CC89D50FAB3DCDBDDE75E77C /* Pods-PhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBrowser/Pods-PhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,8 +172,11 @@
 			children = (
 				026BA69520A05441001B3372 /* PhotoBrowserController.h */,
 				026BA69620A05441001B3372 /* PhotoBrowserController.m */,
+				026EA27220A2C30000C34378 /* PhotoBrowser.storyboard */,
 				026BA69820A05537001B3372 /* PhotoBrowserItem.h */,
 				026BA69920A05537001B3372 /* PhotoBrowserItem.m */,
+				026EA26F20A2A3A700C34378 /* PhotoBrowserCell.h */,
+				026EA27020A2A3A700C34378 /* PhotoBrowserCell.m */,
 				026BA69B20A056FB001B3372 /* PhotoBrowserAnimator.h */,
 				026BA69C20A056FB001B3372 /* PhotoBrowserAnimator.m */,
 				0233E6D520A07A1800BD0B36 /* UIView+YYAdd.h */,
@@ -322,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026EA27320A2C30000C34378 /* PhotoBrowser.storyboard in Resources */,
 				026BA61C20A04696001B3372 /* LaunchScreen.storyboard in Resources */,
 				026BA61920A04696001B3372 /* Assets.xcassets in Resources */,
 				026BA61720A04695001B3372 /* Main.storyboard in Resources */,
@@ -396,6 +405,7 @@
 				026BA69D20A056FB001B3372 /* PhotoBrowserAnimator.m in Sources */,
 				026BA66120A05111001B3372 /* YYImage.m in Sources */,
 				026BA65B20A05111001B3372 /* YYDiskCache.m in Sources */,
+				026EA27120A2A3A700C34378 /* PhotoBrowserCell.m in Sources */,
 				026BA66220A05111001B3372 /* YYImageCoder.m in Sources */,
 				0233E6D720A07A1800BD0B36 /* UIView+YYAdd.m in Sources */,
 				026BA66320A05111001B3372 /* YYFrameImage.m in Sources */,

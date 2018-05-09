@@ -57,12 +57,19 @@ NSString *const demoCellIdentifier = @"demoCellIdentifier";
         return;
     }
     
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSString *url in cell.photoUrls.pic_urls) {
+        PhotoBrowserItem *item = [[PhotoBrowserItem alloc] init];
+        item.largeImageURL = [NSURL URLWithString:url];
+        [array addObject:item];
+    }
+    
     UIView *view = cell.visibaleImageViews[index];
     
-    PhotoBrowserController *vc = [[PhotoBrowserController alloc] initWithItems:@[] fromView:view];
+    PhotoBrowserController *vc = [PhotoBrowserController browserWith:array fromView:view];
     
     [self presentViewController:vc animated:YES completion:nil];
-    
     
 //    HMPhotoBrowserController *browser = [HMPhotoBrowserController
 //                                         photoBrowserWithSelectedIndex:index

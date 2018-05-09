@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoBrowserItem.h"
 
 @interface PhotoBrowserController : UIViewController
 
+@property (nonatomic, readonly) NSArray <PhotoBrowserItem *> *photoItems;
+
 @property (nonatomic,strong) UIImage *bgImage;
 
-- (instancetype)initWithItems:(NSArray *)photoItems fromView:(UIView *)fromView;
++ (instancetype)browserWith:(NSArray<PhotoBrowserItem *> *)photoItems fromView:(UIView *)fromView;
 
 @end
