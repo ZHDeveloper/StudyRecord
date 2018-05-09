@@ -10,6 +10,12 @@
 #import "UIView+YYAdd.h"
 #import "PhotoBrowserController.h"
 
+@interface PhotoBrowserAnimator ()
+
+@property (nonatomic,assign) BOOL isPresenting;
+
+@end
+
 @implementation PhotoBrowserAnimator 
 
 - (instancetype)initWith:(PhotoBrowserItem *)presentItem {
@@ -22,6 +28,12 @@
 #pragma mark - UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning
 
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    self.isPresenting = YES;
+    return self;
+}
+
+- (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    self.isPresenting = NO;
     return self;
 }
 
@@ -31,6 +43,11 @@
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
     
+    self.isPresenting ? [self presentAnimateTransition:transitionContext] : [self dismissAnimateTransition:transitionContext];
+}
+
+- (void)presentAnimateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+
     PhotoBrowserController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     UIView *containerView = [transitionContext containerView];
@@ -58,6 +75,12 @@
         [transitionContext completeTransition:YES];
         [dummyView removeFromSuperview];
     }];
+}
+
+- (void)dismissAnimateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+
+    
+    
 }
 
 /// 根据图像计算展现目标尺寸

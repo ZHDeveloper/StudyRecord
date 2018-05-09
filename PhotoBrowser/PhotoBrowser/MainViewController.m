@@ -66,10 +66,8 @@ NSString *const demoCellIdentifier = @"demoCellIdentifier";
         item.thumbView = cell.visibaleImageViews[index];
         [array addObject:item];
     }
-    
-    UIView *view = cell.visibaleImageViews[index];
-    
-    PhotoBrowserController *vc = [PhotoBrowserController browserWithSelectedIndex:index phothItems:array fromView:view];
+        
+    PhotoBrowserController *vc = [PhotoBrowserController browserWithSelectedIndex:index phothItems:array];
     
     [self presentViewController:vc animated:YES completion:nil];
 }

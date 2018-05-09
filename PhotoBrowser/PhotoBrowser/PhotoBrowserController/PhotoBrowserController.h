@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoBrowserCell.h"
 #import "PhotoBrowserItem.h"
 
 @interface PhotoBrowserController : UIViewController
@@ -17,6 +18,8 @@
 
 @property (nonatomic,strong) UIImage *bgImage;
 
-+ (instancetype)browserWithSelectedIndex:(NSInteger)index phothItems:(NSArray<PhotoBrowserItem *> *)photoItems fromView:(UIView *)fromView;
+@property (nonatomic,readonly) PhotoBrowserCell *visualCell;
+
++ (instancetype)browserWithSelectedIndex:(NSInteger)index phothItems:(NSArray<PhotoBrowserItem *> *)photoItems;
 
 @end
