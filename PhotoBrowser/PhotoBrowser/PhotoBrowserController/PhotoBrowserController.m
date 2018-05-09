@@ -58,11 +58,6 @@
     [self initialCells];
 }
 
-- (void)initialGesutres {
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
-    [self.view addGestureRecognizer:panGesture];
-}
-
 - (void)initialCells {
     
     CGSize sSize = [UIScreen mainScreen].bounds.size;
@@ -81,6 +76,19 @@
         
         [self.scrollView addSubview:cell];
     }
+}
+
+#pragma mark = Gestures
+- (void)initialGesutres {
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+    [self.view addGestureRecognizer:panGesture];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissAction)];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)dismissAction {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)panAction:(UIPanGestureRecognizer *)gesture {
