@@ -79,7 +79,31 @@
 
 - (void)dismissAnimateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
 
+    PhotoBrowserController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
+    UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
+    
+    UIView *containerView = [transitionContext containerView];
+
+    UIImageView *fromImageView = fromVC.visualCell.imageView;
+    
+    fromImageView.frame = [fromImageView.superview convertRect:fromImageView.frame toView:containerView];
+    
+    [containerView addSubview:fromImageView];
+    
+    PhotoBrowserItem *item = fromVC.photoItems[fromVC.currentIndex];
+    
+    CGRect toRect = [item.thumbView.superview convertRect:item.thumbView.frame toView:containerView];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        fromView.alpha = 0;
+        fromImageView.frame = toRect;
+        
+    } completion:^(BOOL finished) {
+        [fromImageView removeFromSuperview];
+        [transitionContext completeTransition:YES];
+    }];
     
 }
 

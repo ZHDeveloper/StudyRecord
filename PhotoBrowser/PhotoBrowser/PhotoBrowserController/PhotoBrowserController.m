@@ -82,6 +82,7 @@
         cell.frame = CGRectMake(i*sSize.width, 0, sSize.width, sSize.height);
         
         cell.item = self.photoItems[i];
+        cell.tag = 1000+i;
         
         [self.scrollView addSubview:cell];
     }
@@ -148,18 +149,15 @@
     NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
     
     self.bgImage = self.photoItems[page].thumbImage;
+    
+    self.currentIndex = page;
 }
 
 - (PhotoBrowserCell *)visualCell {
     
     NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
     
-    @try {
-        return (PhotoBrowserCell *)_scrollView.subviews[page];
-    }
-    @catch (NSException *exception) {
-        return nil;
-    }
+    return (PhotoBrowserCell *)[_scrollView viewWithTag:(1000+page)];
 }
 
 - (void)setBgImage:(UIImage *)bgImage {
