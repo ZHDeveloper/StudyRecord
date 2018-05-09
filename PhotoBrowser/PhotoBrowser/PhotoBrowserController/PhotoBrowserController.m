@@ -59,51 +59,21 @@
 }
 
 #pragma mark - UICollectionView
-- (PhotoBrowserCell *)cellForPage:(NSInteger)page{
-    for (PhotoBrowserCell *cell in _cells) {
-        if (cell.page == page) {
-            return cell;
-        }
-    }
-    return nil;
-}
-
-- (PhotoBrowserCell *)dequeueReusableCell{
-    PhotoBrowserCell * cell = nil;
-    for (cell in _cells) {
-        if (!cell.superview) {
-            return cell;
-        }
-    }
-    
-    cell = [PhotoBrowserCell new];
-    cell.frame = self.view.bounds;
-    cell.imageContainerView.frame = self.view.bounds;
-    cell.imageView.frame = cell.bounds;
-    cell.page = -1;
-    cell.item = nil;
-    [_cells addObject:cell];
-    return cell;
-}
-
 - (void)setPhotoItems:(NSArray<PhotoBrowserItem *> *)photoItems {
     _photoItems = photoItems;
+
+    self.stackConstraintW.constant = CGRectGetWidth([UIScreen mainScreen].bounds) * photoItems.count;
     
-    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.stackView.arrangedSubviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     for (int i = 0; i<photoItems.count; i++) {
         
         PhotoBrowserCell *cell = [[PhotoBrowserCell alloc] init];
         
-//        cell.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-        
+        cell.item = photoItems[i];
+                
+        [self.stackView addArrangedSubview:cell];
     }
-    
-    for (PhotoBrowserItem *item in photoItems) {
-        
-        
-    }
-    
 }
 
 - (void)setBgImage:(UIImage *)bgImage {
