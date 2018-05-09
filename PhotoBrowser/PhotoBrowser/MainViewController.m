@@ -10,6 +10,7 @@
 #import "PhotoUrls.h"
 #import "PhotoCell.h"
 //#import "HMPhotoBrowserController.h"
+#import "PhotoBrowserController.h"
 
 NSString *const demoCellIdentifier = @"demoCellIdentifier";
 
@@ -55,6 +56,13 @@ NSString *const demoCellIdentifier = @"demoCellIdentifier";
     if (indexPath == nil) {
         return;
     }
+    
+    UIView *view = cell.visibaleImageViews[index];
+    
+    PhotoBrowserController *vc = [[PhotoBrowserController alloc] initWithItems:@[] fromView:view];
+    
+    [self presentViewController:vc animated:YES completion:nil];
+    
     
 //    HMPhotoBrowserController *browser = [HMPhotoBrowserController
 //                                         photoBrowserWithSelectedIndex:index

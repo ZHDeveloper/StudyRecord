@@ -392,7 +392,6 @@ static CGSize CGSizePixelCeil(CGSize size){
     
     [_toContainerView addSubview:self];
     
-    
     _scrollView.contentSize = CGSizeMake(_scrollView.width * _groupItems.count, _scrollView.height);
     [_scrollView scrollRectToVisible:CGRectMake(_scrollView.width * page, 0, _scrollView.width, _scrollView.height) animated:NO];
     [self scrollViewDidScroll:_scrollView];
@@ -429,7 +428,7 @@ static CGSize CGSizePixelCeil(CGSize size){
         float oneTime = animated ? 0.25 : 0;
         [UIView animateWithDuration:oneTime delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut animations:^{
             self.blurBackground.alpha = 1;
-        } completion:nil ];
+        } completion:nil];
         
         _scrollView.userInteractionEnabled = NO;
         
