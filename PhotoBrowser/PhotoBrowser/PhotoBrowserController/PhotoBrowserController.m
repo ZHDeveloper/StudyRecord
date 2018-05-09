@@ -35,10 +35,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+    
+    blurView.frame = self.view.bounds;
+    
+    [self.view addSubview:blurView];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)setBgImage:(UIImage *)bgImage {
+    self.view.layer.contents = (__bridge id _Nullable)(bgImage.CGImage);
+    self.view.layer.contentsGravity = kCAGravityResizeAspectFill;
+}
+
+- (UIImage *)bgImage {
+    CGImageRef cgImage = (__bridge CGImageRef)(self.view.layer.contents);
+    UIImage *image = [UIImage imageWithCGImage:cgImage];
+    return image;
 }
 
 @end

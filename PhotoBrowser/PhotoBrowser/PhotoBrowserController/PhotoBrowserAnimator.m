@@ -8,6 +8,7 @@
 
 #import "PhotoBrowserAnimator.h"
 #import "UIView+YYAdd.h"
+#import "PhotoBrowserController.h"
 
 @implementation PhotoBrowserAnimator 
 
@@ -30,10 +31,14 @@
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
     
+    PhotoBrowserController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
     UIView *containerView = [transitionContext containerView];
     
     UIImage *image = [self.fromView snapshotImageAfterScreenUpdates:NO];
     UIImageView *dummyView = [[UIImageView alloc] initWithImage: image];
+    
+    toVC.bgImage = image;
     
     dummyView.frame = [self.fromView.superview convertRect:self.fromView.frame toView:containerView];
     
