@@ -11,10 +11,12 @@
 
 @interface PhotoBrowserController : UIViewController
 
+@property (nonatomic,assign) NSInteger currentIndex;
+
 @property (nonatomic, readonly) NSArray <PhotoBrowserItem *> *photoItems;
 
 @property (nonatomic,strong) UIImage *bgImage;
 
-+ (instancetype)browserWith:(NSArray<PhotoBrowserItem *> *)photoItems fromView:(UIView *)fromView;
++ (instancetype)browserWithSelectedIndex:(NSInteger)index phothItems:(NSArray<PhotoBrowserItem *> *)photoItems fromView:(UIView *)fromView;
 
 @end

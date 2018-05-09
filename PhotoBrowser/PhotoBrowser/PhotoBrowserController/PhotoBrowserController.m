@@ -25,10 +25,11 @@
 
 @implementation PhotoBrowserController
 
-+ (instancetype)browserWith:(NSArray<PhotoBrowserItem *> *)photoItems fromView:(UIView *)fromView {
-    
++ (instancetype)browserWithSelectedIndex:(NSInteger)index phothItems:(NSArray<PhotoBrowserItem *> *)photoItems fromView:(UIView *)fromView {
+
     PhotoBrowserController *browserVC = [[UIStoryboard storyboardWithName:@"PhotoBrowser" bundle:nil] instantiateInitialViewController];
     
+    browserVC.currentIndex = index;
     browserVC.photoItems = photoItems;
     browserVC.animator = [[PhotoBrowserAnimator alloc] initWith:fromView];
 
@@ -55,6 +56,8 @@
     CGSize sSize = [UIScreen mainScreen].bounds.size;
     
     self.scrollView.contentSize = CGSizeMake(sSize.width*self.photoItems.count, sSize.height);
+    
+    self.scrollView.contentOffset = CGPointMake(sSize.width*self.currentIndex, 0);
     
     for (int i = 0; i<self.photoItems.count; i++) {
         

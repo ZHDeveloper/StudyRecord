@@ -67,16 +67,9 @@ NSString *const demoCellIdentifier = @"demoCellIdentifier";
     
     UIView *view = cell.visibaleImageViews[index];
     
-    PhotoBrowserController *vc = [PhotoBrowserController browserWith:array fromView:view];
+    PhotoBrowserController *vc = [PhotoBrowserController browserWithSelectedIndex:index phothItems:array fromView:view];
     
     [self presentViewController:vc animated:YES completion:nil];
-    
-//    HMPhotoBrowserController *browser = [HMPhotoBrowserController
-//                                         photoBrowserWithSelectedIndex:index
-//                                         urls:_photoList[indexPath.row].pic_urls
-//                                         parentImageViews:[cell visibaleImageViews]];
-//
-//    [self presentViewController:browser animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource
