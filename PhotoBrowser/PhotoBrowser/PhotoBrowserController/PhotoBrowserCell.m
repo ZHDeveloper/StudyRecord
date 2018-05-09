@@ -18,6 +18,10 @@
         return nil;
     }
     
+    if (@available(iOS 11.0,*)) {
+        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     self.delegate = self;
     self.bouncesZoom = YES;
     self.maximumZoomScale = 3;

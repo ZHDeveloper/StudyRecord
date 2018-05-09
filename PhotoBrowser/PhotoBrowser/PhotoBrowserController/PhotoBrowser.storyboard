@@ -29,28 +29,15 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wC-4p-6XL">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0wC-4p-6XL">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ccg-T4-hvw">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ccg-T4-hvw" secondAttribute="bottom" id="Hod-xZ-T52"/>
-                                    <constraint firstAttribute="trailing" secondItem="ccg-T4-hvw" secondAttribute="trailing" id="Qe7-DR-eZI"/>
-                                    <constraint firstItem="ccg-T4-hvw" firstAttribute="leading" secondItem="0wC-4p-6XL" secondAttribute="leading" id="dr4-D0-Om4"/>
-                                    <constraint firstItem="ccg-T4-hvw" firstAttribute="top" secondItem="0wC-4p-6XL" secondAttribute="top" id="gnz-Mi-O2L"/>
-                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="P8O-zv-BMB" firstAttribute="top" secondItem="0wC-4p-6XL" secondAttribute="bottom" id="0Sa-J9-d4r"/>
                             <constraint firstAttribute="trailing" secondItem="0wC-4p-6XL" secondAttribute="trailing" id="Aar-Jc-Ao7"/>
-                            <constraint firstItem="ccg-T4-hvw" firstAttribute="width" secondItem="y2l-ZG-MZv" secondAttribute="width" id="Byg-9n-KqB"/>
                             <constraint firstItem="tdw-tr-nax" firstAttribute="top" secondItem="y2l-ZG-MZv" secondAttribute="top" id="Ph2-OE-xwv"/>
-                            <constraint firstItem="ccg-T4-hvw" firstAttribute="height" secondItem="y2l-ZG-MZv" secondAttribute="height" id="dUp-Fn-yKi"/>
                             <constraint firstAttribute="trailing" secondItem="tdw-tr-nax" secondAttribute="trailing" id="q8e-9I-IfI"/>
                             <constraint firstItem="0wC-4p-6XL" firstAttribute="top" secondItem="y2l-ZG-MZv" secondAttribute="top" id="s2r-S9-e8J"/>
                             <constraint firstItem="0wC-4p-6XL" firstAttribute="leading" secondItem="y2l-ZG-MZv" secondAttribute="leading" id="sTi-KB-gK6"/>
@@ -60,8 +47,6 @@
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="0wC-4p-6XL" id="aqY-QP-xGD"/>
-                        <outlet property="stackConstraintW" destination="Byg-9n-KqB" id="SaN-wM-42Y"/>
-                        <outlet property="stackView" destination="ccg-T4-hvw" id="YtR-Wy-Y38"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gPg-Gf-LM9" userLabel="First Responder" sceneMemberID="firstResponder"/>

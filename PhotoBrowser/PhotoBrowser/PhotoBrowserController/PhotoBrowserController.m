@@ -21,10 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic) IBOutlet UIStackView *stackView;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *stackConstraintW;
-
 @end
 
 @implementation PhotoBrowserController
@@ -42,16 +38,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (@available(iOS 11.0,*)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
     self.bgImage = [UIImage imageNamed:@"72635b6agw1eyqehvujq1j218g0p0qai"];
     
-    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-    
-    blurView.frame = self.view.bounds;
-    
-    [self.view addSubview:blurView];
+    [self initialCells];
+}
 
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
-    scrollView.frame = self.view.bounds;
+- (void)initialCells {
+    
+    CGSize sSize = [UIScreen mainScreen].bounds.size;
+    
+    self.scrollView.contentSize = CGSizeMake(sSize.width*self.photoItems.count, sSize.height);
+    
+    for (int i = 0; i<self.photoItems.count; i++) {
+        
+        PhotoBrowserCell *cell = [[PhotoBrowserCell alloc] init];
+        
+        cell.frame = CGRectMake(i*sSize.width, 0, sSize.width, sSize.height);
+        
+        cell.item = self.photoItems[i];
+        
+        [self.scrollView addSubview:cell];
+    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -62,18 +76,6 @@
 - (void)setPhotoItems:(NSArray<PhotoBrowserItem *> *)photoItems {
     _photoItems = photoItems;
 
-    self.stackConstraintW.constant = CGRectGetWidth([UIScreen mainScreen].bounds) * photoItems.count;
-    
-    [self.stackView.arrangedSubviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
-    for (int i = 0; i<photoItems.count; i++) {
-        
-        PhotoBrowserCell *cell = [[PhotoBrowserCell alloc] init];
-        
-        cell.item = photoItems[i];
-                
-        [self.stackView addArrangedSubview:cell];
-    }
 }
 
 - (void)setBgImage:(UIImage *)bgImage {
