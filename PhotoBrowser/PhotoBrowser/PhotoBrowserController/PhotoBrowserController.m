@@ -10,6 +10,7 @@
 #import "PhotoBrowserAnimator.h"
 #import "PhotoBrowserCell.h"
 #import "UIView+YYAdd.h"
+#import <objc/runtime.h>
 
 @interface PhotoBrowserController () <UIScrollViewDelegate> {
     PhotoBrowserAnimator *_animator;
@@ -54,7 +55,15 @@
     }
 
     [self initialGesutres];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
+    if (objc_getAssociatedObject(self, _cmd)) { return; }
+    objc_setAssociatedObject(self, _cmd, @"LaunchOnce", OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    //添加子空间
     [self initialCells];
 }
 
