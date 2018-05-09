@@ -148,7 +148,18 @@
     NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
     
     self.bgImage = self.photoItems[page].thumbImage;
+}
+
+- (PhotoBrowserCell *)visualCell {
     
+    NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
+    
+    @try {
+        return (PhotoBrowserCell *)_scrollView.subviews[page];
+    }
+    @catch (NSException *exception) {
+        return nil;
+    }
 }
 
 - (void)setBgImage:(UIImage *)bgImage {
