@@ -26,7 +26,6 @@
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning
-
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     self.isPresenting = YES;
     return self;
@@ -47,28 +46,34 @@
 }
 
 - (void)presentAnimateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
-
-    PhotoBrowserController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     UIView *containerView = [transitionContext containerView];
     
-    UIImage *image = self.presentItem.thumbImage;
-    UIImageView *dummyView = [[UIImageView alloc] initWithImage: image];
-    
-    toVC.bgImage = image;
-    
-    UIView *fromView = self.presentItem.thumbView;
-    
-    dummyView.frame = [fromView.superview convertRect:fromView.frame toView:containerView];
+    PhotoBrowserController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+    // 将展现的控制器视图添加到容器视图
     [containerView addSubview:toView];
+
+    UIImage *image = self.presentItem.thumbImage;
+    // 设置背景高斯模糊图片
+    toVC.bgImage = image;
     
-    toView.alpha = 0;
+    // 复制转场的ImageView
+    UIImageView *dummyView = [[UIImageView alloc] initWithImage: image];
     
     [toView addSubview:dummyView];
     
-    [UIView animateWithDuration:0.25 animations:^{
+    UIView *fromView = self.presentItem.thumbView;
+    
+    // 坐标系转换
+    dummyView.frame = [fromView.superview convertRect:fromView.frame toView:containerView];
+    
+    toView.alpha = 0;
+    
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    
+    [UIView animateWithDuration:duration animations:^{
         dummyView.frame = [self presentRectWithImageView:dummyView];
         toView.alpha = 1;
     } completion:^(BOOL finished) {
@@ -78,24 +83,29 @@
 }
 
 - (void)dismissAnimateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
-
+    
+    UIView *containerView = [transitionContext containerView];
+    
     PhotoBrowserController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
     UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
-    
-    UIView *containerView = [transitionContext containerView];
 
+    // 获取需要动画的ImageView，并添加容器视图
     UIImageView *fromImageView = fromVC.visualCell.imageView;
-    
-    fromImageView.frame = [fromImageView.superview convertRect:fromImageView.frame toView:containerView];
     
     [containerView addSubview:fromImageView];
     
+    // 坐标系转换
+    fromImageView.frame = [fromImageView.superview convertRect:fromImageView.frame toView:containerView];
+    
     PhotoBrowserItem *item = fromVC.photoItems[fromVC.currentIndex];
     
+    // 计算目标偏移Rect
     CGRect toRect = [item.thumbView.superview convertRect:item.thumbView.frame toView:containerView];
     
-    [UIView animateWithDuration:0.25 animations:^{
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    
+    [UIView animateWithDuration:duration animations:^{
         
         fromView.alpha = 0;
         fromImageView.frame = toRect;
