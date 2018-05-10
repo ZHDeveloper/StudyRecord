@@ -10,7 +10,7 @@
 #import "PhotoBrowserAnimator.h"
 #import "PhotoBrowserCell.h"
 #import "PhotoBrowserItem.h"
-#import "UIView+YYAdd.h"
+#import "UIView+PhotoBrowser.h"
 #import <objc/runtime.h>
 
 @interface PhotoBrowserController () <UIScrollViewDelegate> {

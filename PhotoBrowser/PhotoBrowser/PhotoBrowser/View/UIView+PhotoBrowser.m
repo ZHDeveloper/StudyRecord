@@ -1,14 +1,14 @@
 //
-//  UIView+YYAdd.m
-//  YYPhotoGroupView
+//  UIView+PhotoBrowser.m
+//  PhotoBrowser
 //
-//  Created by 赵铭 on 2017/9/1.
-//  Copyright © 2017年 zm. All rights reserved.
+//  Created by ZhiHua Shen on 2018/5/10.
+//  Copyright © 2018年 ZhiHua Shen. All rights reserved.
 //
 
-#import "UIView+YYAdd.h"
+#import "UIView+PhotoBrowser.h"
 
-@implementation UIView (YYAdd)
+@implementation UIView (PhotoBrowser)
 
 - (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates {
     if (![self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {

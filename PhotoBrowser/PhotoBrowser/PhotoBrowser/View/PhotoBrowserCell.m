@@ -8,7 +8,7 @@
 
 #import "PhotoBrowserCell.h"
 #import "YYWebImage.h"
-#import "UIView+YYAdd.h"
+#import "UIView+PhotoBrowser.h"
 
 @implementation PhotoBrowserCell
 

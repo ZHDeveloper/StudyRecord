@@ -7,7 +7,7 @@
 //
 
 #import "PhotoBrowserAnimator.h"
-#import "UIView+YYAdd.h"
+#import "UIView+PhotoBrowser.h"
 #import "PhotoBrowserController.h"
 #import "PhotoBrowserCell.h"
 #import "PhotoBrowserItem.h"

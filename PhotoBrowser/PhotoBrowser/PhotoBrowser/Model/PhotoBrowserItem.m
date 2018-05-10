@@ -7,7 +7,7 @@
 //
 
 #import "PhotoBrowserItem.h"
-#import "UIView+YYAdd.h"
+#import "UIView+PhotoBrowser.h"
 #import "YYWebImage.h"
 
 @implementation PhotoBrowserItem
