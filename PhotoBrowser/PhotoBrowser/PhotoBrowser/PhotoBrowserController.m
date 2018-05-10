@@ -64,6 +64,12 @@
     [self initialCells];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //显示分页
+    [self showPager];
+}
+
 - (void)initialCells {
     
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
@@ -84,7 +90,6 @@
     self.scrollView.contentOffset = CGPointMake(screenSize.width*self.currentIndex, 0);
     
     [self scrollViewDidScroll:self.scrollView];
-    [self scrollViewDidEndDecelerating:self.scrollView];
 }
 
 #pragma mark = Gestures
