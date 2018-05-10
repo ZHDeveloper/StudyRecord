@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0233E6D720A07A1800BD0B36 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 0233E6D620A07A1800BD0B36 /* UIView+YYAdd.m */; };
 		026BA61120A04695001B3372 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA61020A04695001B3372 /* AppDelegate.m */; };
 		026BA61420A04695001B3372 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA61320A04695001B3372 /* ViewController.m */; };
 		026BA61720A04695001B3372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026BA61520A04695001B3372 /* Main.storyboard */; };
@@ -35,17 +34,16 @@
 		026BA66A20A05111001B3372 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA65720A05110001B3372 /* CALayer+YYWebImage.m */; };
 		026BA66B20A05111001B3372 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA65920A05110001B3372 /* YYWebImageOperation.m */; };
 		026BA69420A052B6001B3372 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA69320A052B6001B3372 /* MainViewController.m */; };
-		026BA69720A05441001B3372 /* PhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA69620A05441001B3372 /* PhotoBrowserController.m */; };
-		026BA69A20A05537001B3372 /* PhotoBrowserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA69920A05537001B3372 /* PhotoBrowserItem.m */; };
-		026BA69D20A056FB001B3372 /* PhotoBrowserAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 026BA69C20A056FB001B3372 /* PhotoBrowserAnimator.m */; };
-		026EA27120A2A3A700C34378 /* PhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 026EA27020A2A3A700C34378 /* PhotoBrowserCell.m */; };
-		026EA27320A2C30000C34378 /* PhotoBrowser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 026EA27220A2C30000C34378 /* PhotoBrowser.storyboard */; };
+		02A6347820A3D89A00D59EC6 /* PhotoBrowserAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A6346D20A3D89A00D59EC6 /* PhotoBrowserAnimator.m */; };
+		02A6347920A3D89A00D59EC6 /* PhotoBrowserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A6347220A3D89A00D59EC6 /* PhotoBrowserItem.m */; };
+		02A6347A20A3D89A00D59EC6 /* PhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A6347520A3D89A00D59EC6 /* PhotoBrowserCell.m */; };
+		02A6347B20A3D89A00D59EC6 /* PhotoBrowser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A6347620A3D89A00D59EC6 /* PhotoBrowser.storyboard */; };
+		02A6347C20A3D89A00D59EC6 /* PhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A6347720A3D89A00D59EC6 /* PhotoBrowserController.m */; };
+		02A6347F20A3D8EC00D59EC6 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A6347E20A3D8EC00D59EC6 /* UIView+YYAdd.m */; };
 		CC9434CB02EDDFF196D1C6C7 /* Pods_PhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FB8C371939FE5DDFC97A89 /* Pods_PhotoBrowser.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0233E6D520A07A1800BD0B36 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+YYAdd.h"; path = "../../../PhotoGroupView/PhotoGroupView/YYPhotoGroupView/UIView+YYAdd.h"; sourceTree = "<group>"; };
-		0233E6D620A07A1800BD0B36 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+YYAdd.m"; path = "../../../PhotoGroupView/PhotoGroupView/YYPhotoGroupView/UIView+YYAdd.m"; sourceTree = "<group>"; };
 		026BA60C20A04695001B3372 /* PhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		026BA60F20A04695001B3372 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		026BA61020A04695001B3372 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -99,16 +97,18 @@
 		026BA65920A05110001B3372 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
 		026BA69220A052B6001B3372 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		026BA69320A052B6001B3372 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		026BA69520A05441001B3372 /* PhotoBrowserController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserController.h; sourceTree = "<group>"; };
-		026BA69620A05441001B3372 /* PhotoBrowserController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserController.m; sourceTree = "<group>"; };
-		026BA69820A05537001B3372 /* PhotoBrowserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserItem.h; sourceTree = "<group>"; };
-		026BA69920A05537001B3372 /* PhotoBrowserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserItem.m; sourceTree = "<group>"; };
-		026BA69B20A056FB001B3372 /* PhotoBrowserAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserAnimator.h; sourceTree = "<group>"; };
-		026BA69C20A056FB001B3372 /* PhotoBrowserAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserAnimator.m; sourceTree = "<group>"; };
-		026EA26F20A2A3A700C34378 /* PhotoBrowserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserCell.h; sourceTree = "<group>"; };
-		026EA27020A2A3A700C34378 /* PhotoBrowserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserCell.m; sourceTree = "<group>"; };
-		026EA27220A2C30000C34378 /* PhotoBrowser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoBrowser.storyboard; sourceTree = "<group>"; };
-		02A6346920A3D72100D59EC6 /* PhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoBrowser.h; sourceTree = "<group>"; };
+		02A6346C20A3D89A00D59EC6 /* PhotoBrowserAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserAnimator.h; sourceTree = "<group>"; };
+		02A6346D20A3D89A00D59EC6 /* PhotoBrowserAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserAnimator.m; sourceTree = "<group>"; };
+		02A6346E20A3D89A00D59EC6 /* PhotoBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserController.h; sourceTree = "<group>"; };
+		02A6346F20A3D89A00D59EC6 /* PhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowser.h; sourceTree = "<group>"; };
+		02A6347120A3D89A00D59EC6 /* PhotoBrowserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserItem.h; sourceTree = "<group>"; };
+		02A6347220A3D89A00D59EC6 /* PhotoBrowserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserItem.m; sourceTree = "<group>"; };
+		02A6347420A3D89A00D59EC6 /* PhotoBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserCell.h; sourceTree = "<group>"; };
+		02A6347520A3D89A00D59EC6 /* PhotoBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserCell.m; sourceTree = "<group>"; };
+		02A6347620A3D89A00D59EC6 /* PhotoBrowser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoBrowser.storyboard; sourceTree = "<group>"; };
+		02A6347720A3D89A00D59EC6 /* PhotoBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserController.m; sourceTree = "<group>"; };
+		02A6347D20A3D8EC00D59EC6 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+YYAdd.h"; path = "../../../../PhotoGroupView/PhotoGroupView/YYPhotoGroupView/UIView+YYAdd.h"; sourceTree = "<group>"; };
+		02A6347E20A3D8EC00D59EC6 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+YYAdd.m"; path = "../../../../PhotoGroupView/PhotoGroupView/YYPhotoGroupView/UIView+YYAdd.m"; sourceTree = "<group>"; };
 		21FB8C371939FE5DDFC97A89 /* Pods_PhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB1DDB3DE3FF14CA33813DD /* Pods-PhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBrowser/Pods-PhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 		CC89D50FAB3DCDBDDE75E77C /* Pods-PhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBrowser/Pods-PhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
@@ -147,8 +147,8 @@
 		026BA60E20A04695001B3372 /* PhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				02A6346A20A3D89A00D59EC6 /* PhotoBrowser */,
 				026BA63120A05110001B3372 /* YYWebImage */,
-				026BA62520A046C6001B3372 /* PhotoBrowserController */,
 				026BA60F20A04695001B3372 /* AppDelegate.h */,
 				026BA61020A04695001B3372 /* AppDelegate.m */,
 				026BA61220A04695001B3372 /* ViewController.h */,
@@ -166,25 +166,6 @@
 				026BA61E20A04696001B3372 /* main.m */,
 			);
 			path = PhotoBrowser;
-			sourceTree = "<group>";
-		};
-		026BA62520A046C6001B3372 /* PhotoBrowserController */ = {
-			isa = PBXGroup;
-			children = (
-				02A6346920A3D72100D59EC6 /* PhotoBrowser.h */,
-				026BA69520A05441001B3372 /* PhotoBrowserController.h */,
-				026BA69620A05441001B3372 /* PhotoBrowserController.m */,
-				026EA27220A2C30000C34378 /* PhotoBrowser.storyboard */,
-				026BA69820A05537001B3372 /* PhotoBrowserItem.h */,
-				026BA69920A05537001B3372 /* PhotoBrowserItem.m */,
-				026EA26F20A2A3A700C34378 /* PhotoBrowserCell.h */,
-				026EA27020A2A3A700C34378 /* PhotoBrowserCell.m */,
-				026BA69B20A056FB001B3372 /* PhotoBrowserAnimator.h */,
-				026BA69C20A056FB001B3372 /* PhotoBrowserAnimator.m */,
-				0233E6D520A07A1800BD0B36 /* UIView+YYAdd.h */,
-				0233E6D620A07A1800BD0B36 /* UIView+YYAdd.m */,
-			);
-			path = PhotoBrowserController;
 			sourceTree = "<group>";
 		};
 		026BA63120A05110001B3372 /* YYWebImage */ = {
@@ -253,6 +234,49 @@
 				026BA65720A05110001B3372 /* CALayer+YYWebImage.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		02A6346A20A3D89A00D59EC6 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				02A6346B20A3D89A00D59EC6 /* Animator */,
+				02A6346E20A3D89A00D59EC6 /* PhotoBrowserController.h */,
+				02A6347720A3D89A00D59EC6 /* PhotoBrowserController.m */,
+				02A6346F20A3D89A00D59EC6 /* PhotoBrowser.h */,
+				02A6347020A3D89A00D59EC6 /* Model */,
+				02A6347320A3D89A00D59EC6 /* View */,
+			);
+			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
+		02A6346B20A3D89A00D59EC6 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				02A6346C20A3D89A00D59EC6 /* PhotoBrowserAnimator.h */,
+				02A6346D20A3D89A00D59EC6 /* PhotoBrowserAnimator.m */,
+			);
+			path = Animator;
+			sourceTree = "<group>";
+		};
+		02A6347020A3D89A00D59EC6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				02A6347120A3D89A00D59EC6 /* PhotoBrowserItem.h */,
+				02A6347220A3D89A00D59EC6 /* PhotoBrowserItem.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		02A6347320A3D89A00D59EC6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				02A6347D20A3D8EC00D59EC6 /* UIView+YYAdd.h */,
+				02A6347E20A3D8EC00D59EC6 /* UIView+YYAdd.m */,
+				02A6347420A3D89A00D59EC6 /* PhotoBrowserCell.h */,
+				02A6347520A3D89A00D59EC6 /* PhotoBrowserCell.m */,
+				02A6347620A3D89A00D59EC6 /* PhotoBrowser.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2FF05929F78FECD71790A213 /* Frameworks */ = {
@@ -332,7 +356,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				026EA27320A2C30000C34378 /* PhotoBrowser.storyboard in Resources */,
+				02A6347B20A3D89A00D59EC6 /* PhotoBrowser.storyboard in Resources */,
 				026BA61C20A04696001B3372 /* LaunchScreen.storyboard in Resources */,
 				026BA61920A04696001B3372 /* Assets.xcassets in Resources */,
 				026BA61720A04695001B3372 /* Main.storyboard in Resources */,
@@ -404,12 +428,12 @@
 				026BA65F20A05111001B3372 /* YYWebImageManager.m in Sources */,
 				026BA65A20A05111001B3372 /* YYImageCache.m in Sources */,
 				026BA66420A05111001B3372 /* YYAnimatedImageView.m in Sources */,
-				026BA69D20A056FB001B3372 /* PhotoBrowserAnimator.m in Sources */,
+				02A6347820A3D89A00D59EC6 /* PhotoBrowserAnimator.m in Sources */,
 				026BA66120A05111001B3372 /* YYImage.m in Sources */,
 				026BA65B20A05111001B3372 /* YYDiskCache.m in Sources */,
-				026EA27120A2A3A700C34378 /* PhotoBrowserCell.m in Sources */,
+				02A6347A20A3D89A00D59EC6 /* PhotoBrowserCell.m in Sources */,
 				026BA66220A05111001B3372 /* YYImageCoder.m in Sources */,
-				0233E6D720A07A1800BD0B36 /* UIView+YYAdd.m in Sources */,
+				02A6347C20A3D89A00D59EC6 /* PhotoBrowserController.m in Sources */,
 				026BA66320A05111001B3372 /* YYFrameImage.m in Sources */,
 				026BA66820A05111001B3372 /* MKAnnotationView+YYWebImage.m in Sources */,
 				026BA65C20A05111001B3372 /* YYCache.m in Sources */,
@@ -424,9 +448,9 @@
 				026BA62B20A050B9001B3372 /* PhotoUrls.m in Sources */,
 				026BA69420A052B6001B3372 /* MainViewController.m in Sources */,
 				026BA61120A04695001B3372 /* AppDelegate.m in Sources */,
+				02A6347F20A3D8EC00D59EC6 /* UIView+YYAdd.m in Sources */,
+				02A6347920A3D89A00D59EC6 /* PhotoBrowserItem.m in Sources */,
 				026BA66A20A05111001B3372 /* CALayer+YYWebImage.m in Sources */,
-				026BA69A20A05537001B3372 /* PhotoBrowserItem.m in Sources */,
-				026BA69720A05441001B3372 /* PhotoBrowserController.m in Sources */,
 				026BA66B20A05111001B3372 /* YYWebImageOperation.m in Sources */,
 				026BA66520A05111001B3372 /* _YYWebImageSetter.m in Sources */,
 			);
