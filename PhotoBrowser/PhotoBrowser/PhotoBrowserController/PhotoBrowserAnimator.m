@@ -9,6 +9,8 @@
 #import "PhotoBrowserAnimator.h"
 #import "UIView+YYAdd.h"
 #import "PhotoBrowserController.h"
+#import "PhotoBrowserCell.h"
+#import "PhotoBrowserItem.h"
 
 @interface PhotoBrowserAnimator ()
 

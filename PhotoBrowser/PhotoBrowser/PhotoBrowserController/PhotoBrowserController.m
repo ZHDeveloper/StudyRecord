@@ -9,6 +9,7 @@
 #import "PhotoBrowserController.h"
 #import "PhotoBrowserAnimator.h"
 #import "PhotoBrowserCell.h"
+#import "PhotoBrowserItem.h"
 #import "UIView+YYAdd.h"
 #import <objc/runtime.h>
 

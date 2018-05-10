@@ -108,6 +108,7 @@
 		026EA26F20A2A3A700C34378 /* PhotoBrowserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserCell.h; sourceTree = "<group>"; };
 		026EA27020A2A3A700C34378 /* PhotoBrowserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserCell.m; sourceTree = "<group>"; };
 		026EA27220A2C30000C34378 /* PhotoBrowser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoBrowser.storyboard; sourceTree = "<group>"; };
+		02A6346920A3D72100D59EC6 /* PhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoBrowser.h; sourceTree = "<group>"; };
 		21FB8C371939FE5DDFC97A89 /* Pods_PhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB1DDB3DE3FF14CA33813DD /* Pods-PhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBrowser/Pods-PhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 		CC89D50FAB3DCDBDDE75E77C /* Pods-PhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoBrowser/Pods-PhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 		026BA62520A046C6001B3372 /* PhotoBrowserController */ = {
 			isa = PBXGroup;
 			children = (
+				02A6346920A3D72100D59EC6 /* PhotoBrowser.h */,
 				026BA69520A05441001B3372 /* PhotoBrowserController.h */,
 				026BA69620A05441001B3372 /* PhotoBrowserController.m */,
 				026EA27220A2C30000C34378 /* PhotoBrowser.storyboard */,

@@ -9,8 +9,7 @@
 #import "MainViewController.h"
 #import "PhotoUrls.h"
 #import "PhotoCell.h"
-//#import "HMPhotoBrowserController.h"
-#import "PhotoBrowserController.h"
+#import "PhotoBrowser.h"
 
 NSString *const demoCellIdentifier = @"demoCellIdentifier";
 

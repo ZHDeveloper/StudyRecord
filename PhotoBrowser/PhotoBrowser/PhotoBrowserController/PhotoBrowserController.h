@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PhotoBrowserCell.h"
-#import "PhotoBrowserItem.h"
 
+@class PhotoBrowserCell,PhotoBrowserItem;
 @interface PhotoBrowserController : UIViewController
 
 @property (nonatomic,assign) NSInteger currentIndex;
