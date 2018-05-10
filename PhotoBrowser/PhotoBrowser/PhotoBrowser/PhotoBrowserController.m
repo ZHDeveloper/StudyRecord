@@ -13,7 +13,7 @@
 #import "UIView+PhotoBrowser.h"
 #import <objc/runtime.h>
 
-@interface PhotoBrowserController () <UIScrollViewDelegate> {
+@interface PhotoBrowserController () <UIScrollViewDelegate,UIGestureRecognizerDelegate> {
     PhotoBrowserAnimator *_animator;
 }
 
@@ -91,11 +91,57 @@
 
 #pragma mark = Gestures
 - (void)initialGesutres {
+    // 拖拽手势：移动图片
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
     [self.view addGestureRecognizer:panGesture];
     
+    // 单击手势：dismiss
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissAction)];
+    tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
+    
+    // 双击手势：放大图片
+    UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapAction:)];
+    doubleTapGesture.delegate= self;
+    doubleTapGesture.numberOfTapsRequired = 2;
+    [tapGesture requireGestureRecognizerToFail:doubleTapGesture];
+    [self.view addGestureRecognizer:doubleTapGesture];
+    
+    // 长按分享图片
+    UILongPressGestureRecognizer *pressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction)];
+    pressGesture.delegate = self;
+    [self.view addGestureRecognizer:pressGesture];
+}
+
+- (void)longPressAction {
+    
+    PhotoBrowserCell *tile = self.visualCell;
+    if (!tile.imageView.image) {
+        return;
+    }
+    UIActivityViewController *activityViewController =
+    [[UIActivityViewController alloc] initWithActivityItems:@[tile.imageView.image] applicationActivities:nil];
+    if ([activityViewController respondsToSelector:@selector(popoverPresentationController)]) {
+        activityViewController.popoverPresentationController.sourceView = self.view;
+    }
+    
+    [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
+- (void)doubleTapAction:(UITapGestureRecognizer *)g {
+
+    PhotoBrowserCell *cell = self.visualCell;
+    if (cell) {
+        if (cell.zoomScale > 1) {
+            [cell setZoomScale:1 animated:YES];
+        }else{
+            CGPoint touchPoint = [g locationInView:cell.imageView];
+            CGFloat newZoomScale = cell.maximumZoomScale;
+            CGFloat xsize = self.view.width / newZoomScale;
+            CGFloat ysize = self.view.height / newZoomScale;
+            [cell zoomToRect:CGRectMake(touchPoint.x - xsize/2, touchPoint.y - ysize/2, xsize, ysize) animated:YES];
+        }
+    }
 }
 
 - (void)dismissAction {
@@ -140,9 +186,11 @@
             break;
     }
     
-
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
 
 #pragma mark - UIScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
