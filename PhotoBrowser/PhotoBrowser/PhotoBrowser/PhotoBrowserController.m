@@ -210,9 +210,39 @@
     
     self.visualCell.item = self.photoItems[page];
     
+    [self showPager];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (!decelerate) {
+        [self hidePager];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self hidePager];
+}
+
+- (void)showPager {
+    
+    NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
+    
     self.pageControl.numberOfPages = self.photoItems.count;
     self.pageControl.currentPage = page;
+
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.pageControl.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self hidePager];
+    }];
 }
+
+- (void)hidePager{
+    [UIView animateWithDuration:0.3 delay:0.8 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut animations:^{
+        self.pageControl.alpha = 0;
+    } completion:nil];
+}
+
 
 - (PhotoBrowserCell *)visualCell {
     
