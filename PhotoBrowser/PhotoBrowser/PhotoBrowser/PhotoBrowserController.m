@@ -25,6 +25,9 @@
 
 @property (nonatomic, assign) CGPoint panGestureBeginPoint;
 
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+
+
 @end
 
 @implementation PhotoBrowserController
@@ -116,12 +119,15 @@
 
 - (void)longPressAction {
     
-    PhotoBrowserCell *tile = self.visualCell;
-    if (!tile.imageView.image) {
+    PhotoBrowserCell *cell = self.visualCell;
+    
+    if (!cell.imageView.image) {
         return;
     }
+    
     UIActivityViewController *activityViewController =
-    [[UIActivityViewController alloc] initWithActivityItems:@[tile.imageView.image] applicationActivities:nil];
+    [[UIActivityViewController alloc] initWithActivityItems:@[cell.imageView.image] applicationActivities:nil];
+    
     if ([activityViewController respondsToSelector:@selector(popoverPresentationController)]) {
         activityViewController.popoverPresentationController.sourceView = self.view;
     }
@@ -203,6 +209,9 @@
     self.currentIndex = page;
     
     self.visualCell.item = self.photoItems[page];
+    
+    self.pageControl.numberOfPages = self.photoItems.count;
+    self.pageControl.currentPage = page;
 }
 
 - (PhotoBrowserCell *)visualCell {

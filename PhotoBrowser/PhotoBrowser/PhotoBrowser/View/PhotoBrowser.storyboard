@@ -35,11 +35,16 @@
                                     <outlet property="delegate" destination="Wcl-YJ-RUX" id="UYZ-wl-GPl"/>
                                 </connections>
                             </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SlY-iO-7Pi">
+                                <rect key="frame" x="168" y="615" width="39" height="37"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="P8O-zv-BMB" firstAttribute="top" secondItem="0wC-4p-6XL" secondAttribute="bottom" id="0Sa-J9-d4r"/>
+                            <constraint firstItem="SlY-iO-7Pi" firstAttribute="centerX" secondItem="y2l-ZG-MZv" secondAttribute="centerX" id="5RN-Cl-pRN"/>
                             <constraint firstAttribute="trailing" secondItem="0wC-4p-6XL" secondAttribute="trailing" id="Aar-Jc-Ao7"/>
+                            <constraint firstItem="P8O-zv-BMB" firstAttribute="top" secondItem="SlY-iO-7Pi" secondAttribute="bottom" constant="15" id="GpO-xN-mwe"/>
                             <constraint firstItem="tdw-tr-nax" firstAttribute="top" secondItem="y2l-ZG-MZv" secondAttribute="top" id="Ph2-OE-xwv"/>
                             <constraint firstAttribute="trailing" secondItem="tdw-tr-nax" secondAttribute="trailing" id="q8e-9I-IfI"/>
                             <constraint firstItem="0wC-4p-6XL" firstAttribute="top" secondItem="y2l-ZG-MZv" secondAttribute="top" id="s2r-S9-e8J"/>
@@ -49,6 +54,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="pageControl" destination="SlY-iO-7Pi" id="BwL-n5-onK"/>
                         <outlet property="scrollView" destination="0wC-4p-6XL" id="aqY-QP-xGD"/>
                     </connections>
                 </viewController>
