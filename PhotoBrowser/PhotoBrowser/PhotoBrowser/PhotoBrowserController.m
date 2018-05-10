@@ -91,6 +91,7 @@
     self.scrollView.contentOffset = CGPointMake(screenSize.width*self.currentIndex, 0);
     
     [self scrollViewDidScroll:self.scrollView];
+    [self scrollViewDidEndDecelerating:self.scrollView];
 }
 
 #pragma mark = Gestures
@@ -232,9 +233,7 @@
 
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
         self.pageControl.alpha = 1;
-    } completion:^(BOOL finished) {
-        [self hidePager];
-    }];
+    } completion:nil];
 }
 
 - (void)hidePager{
