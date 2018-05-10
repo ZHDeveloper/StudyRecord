@@ -239,9 +239,9 @@
 		02A6346A20A3D89A00D59EC6 /* PhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				02A6346F20A3D89A00D59EC6 /* PhotoBrowser.h */,
 				02A6346E20A3D89A00D59EC6 /* PhotoBrowserController.h */,
 				02A6347720A3D89A00D59EC6 /* PhotoBrowserController.m */,
-				02A6346F20A3D89A00D59EC6 /* PhotoBrowser.h */,
 				02A6346B20A3D89A00D59EC6 /* Animator */,
 				02A6347020A3D89A00D59EC6 /* Model */,
 				02A6347320A3D89A00D59EC6 /* View */,
@@ -599,7 +599,10 @@
 				DEVELOPMENT_TEAM = S2PRN5RUXV;
 				INFOPLIST_FILE = PhotoBrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xolo.PhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -615,7 +618,10 @@
 				DEVELOPMENT_TEAM = S2PRN5RUXV;
 				INFOPLIST_FILE = PhotoBrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xolo.PhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
