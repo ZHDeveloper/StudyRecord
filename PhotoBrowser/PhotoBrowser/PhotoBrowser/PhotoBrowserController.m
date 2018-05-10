@@ -244,6 +244,10 @@
     [self scrollViewDidScroll:_scrollView];
 }
 
+- (void)dealloc {
+    NSLog(@"PhotoBrowserController has dealloc!!!");
+}
+
 #pragma mark - Getter & Setter
 - (PhotoBrowserCell *)visualCell {
     

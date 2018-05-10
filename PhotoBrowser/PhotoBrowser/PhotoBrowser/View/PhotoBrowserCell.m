@@ -10,6 +10,38 @@
 #import "YYWebImage.h"
 #import "UIView+PhotoBrowser.h"
 
+#ifndef weakify
+#if DEBUG
+#if __has_feature(objc_arc)
+#define weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+#else
+#define weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
+#endif
+#else
+#if __has_feature(objc_arc)
+#define weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+#else
+#define weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+#endif
+#endif
+#endif
+
+#ifndef strongify
+#if DEBUG
+#if __has_feature(objc_arc)
+#define strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
+#else
+#define strongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
+#endif
+#else
+#if __has_feature(objc_arc)
+#define strongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
+#else
+#define strongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
+#endif
+#endif
+#endif
+
 @implementation PhotoBrowserCell
 
 - (instancetype)init{
@@ -92,16 +124,16 @@
         return;
     }
 
-    __weak typeof(self) weakSelf = self;
+    @weakify(self)
     [_imageView yy_setImageWithURL:item.largeImageURL placeholder:item.thumbImage options:kNilOptions progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        if (!weakSelf) return;
+        @strongify(self)
         CGFloat progress = receivedSize / (float)expectedSize;
         progress = progress < 0.01 ? 0.01 : progress > 1 ? 1 : progress;
         if (isnan(progress)) progress = 0;
         self.progressLayer.hidden = NO;
         self.progressLayer.strokeEnd = progress;
     } transform:nil completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
-        if (!weakSelf) return;
+        @strongify(self)
         self.progressLayer.hidden = YES;
         if (stage == YYWebImageStageFinished) {
             self.maximumZoomScale = 3;
