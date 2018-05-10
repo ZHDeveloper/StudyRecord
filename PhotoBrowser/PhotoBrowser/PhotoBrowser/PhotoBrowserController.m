@@ -70,23 +70,24 @@
 
 - (void)initialCells {
     
-    CGSize sSize = [UIScreen mainScreen].bounds.size;
-    
-    self.scrollView.contentSize = CGSizeMake(sSize.width*self.photoItems.count, sSize.height);
-    
-    self.scrollView.contentOffset = CGPointMake(sSize.width*self.currentIndex, 0);
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
     
     for (int i = 0; i<self.photoItems.count; i++) {
         
         PhotoBrowserCell *cell = [[PhotoBrowserCell alloc] init];
         
-        cell.frame = CGRectMake(i*sSize.width, 0, sSize.width, sSize.height);
+        cell.frame = CGRectMake(i*screenSize.width, 0, screenSize.width, screenSize.height);
         
-        cell.item = self.photoItems[i];
         cell.tag = 1000+i;
         
         [self.scrollView addSubview:cell];
     }
+    
+    self.scrollView.contentSize = CGSizeMake(screenSize.width*self.photoItems.count, screenSize.height);
+    
+    self.scrollView.contentOffset = CGPointMake(screenSize.width*self.currentIndex, 0);
+    
+    [self scrollViewDidScroll:self.scrollView];
 }
 
 #pragma mark = Gestures
@@ -200,6 +201,8 @@
     self.bgImage = self.photoItems[page].thumbImage;
     
     self.currentIndex = page;
+    
+    self.visualCell.item = self.photoItems[page];
 }
 
 - (PhotoBrowserCell *)visualCell {
