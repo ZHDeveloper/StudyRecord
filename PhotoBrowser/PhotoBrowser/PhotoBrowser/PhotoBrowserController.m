@@ -59,13 +59,6 @@
     }
 
     [self initialGesutres];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    if (objc_getAssociatedObject(self, _cmd)) { return; }
-    objc_setAssociatedObject(self, _cmd, @"LaunchOnce", OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     //添加子控件
     [self initialCells];

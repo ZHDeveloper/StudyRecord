@@ -72,6 +72,7 @@
     dummyView.frame = [fromView.superview convertRect:fromView.frame toView:containerView];
     
     toView.alpha = 0;
+    toVC.visualCell.imageView.hidden = YES;
     
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     
@@ -79,8 +80,9 @@
         dummyView.frame = [self presentRectWithImageView:dummyView];
         toView.alpha = 1;
     } completion:^(BOOL finished) {
-        [transitionContext completeTransition:YES];
+        toVC.visualCell.imageView.hidden = NO;
         [dummyView removeFromSuperview];
+        [transitionContext completeTransition:YES];
     }];
 }
 
