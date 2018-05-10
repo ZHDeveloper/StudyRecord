@@ -53,7 +53,11 @@
     
     PhotoBrowserController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+    UIView *toView = toVC.view;
+    
+    toView.frame = [transitionContext finalFrameForViewController:toVC];
+    [toView layoutIfNeeded];
+    
     // 将展现的控制器视图添加到容器视图
     [containerView addSubview:toView];
     
