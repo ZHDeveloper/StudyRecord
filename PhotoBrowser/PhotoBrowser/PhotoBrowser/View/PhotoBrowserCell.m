@@ -35,7 +35,7 @@
     _imageContainerView.clipsToBounds = YES;
     [self addSubview:_imageContainerView];
     
-    _imageView = [UIImageView new];
+    _imageView = [YYAnimatedImageView new];
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     _imageView.clipsToBounds = YES;
     _imageView.backgroundColor = [UIColor colorWithWhite:1.000 alpha:0.500];
