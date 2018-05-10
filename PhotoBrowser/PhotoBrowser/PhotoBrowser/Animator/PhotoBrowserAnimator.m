@@ -95,10 +95,11 @@
     // 获取需要动画的ImageView，并添加容器视图
     UIImageView *fromImageView = fromVC.visualCell.imageView;
     
-    [containerView addSubview:fromImageView];
-    
     // 坐标系转换
     fromImageView.frame = [fromImageView.superview convertRect:fromImageView.frame toView:containerView];
+    
+    // 添加的容器视图
+    [containerView addSubview:fromImageView];
     
     PhotoBrowserItem *item = fromVC.photoItems[fromVC.currentIndex];
     
