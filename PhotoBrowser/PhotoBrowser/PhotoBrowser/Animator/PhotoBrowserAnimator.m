@@ -56,34 +56,51 @@
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
     // 将展现的控制器视图添加到容器视图
     [containerView addSubview:toView];
+    
+    UIView *fromImageView = self.presentItem.thumbView;
+    
+    if (fromImageView) {
+        
+        UIImage *image = self.presentItem.thumbImage;
+        // 设置背景高斯模糊图片
+        toVC.bgImage = image;
+        
+        // 复制转场的ImageView
+        UIImageView *dummyView = [[UIImageView alloc] initWithImage: image];
+        
+        [toView addSubview:dummyView];
 
-    UIImage *image = self.presentItem.thumbImage;
-    // 设置背景高斯模糊图片
-    toVC.bgImage = image;
+        // 坐标系转换
+        dummyView.frame = [fromImageView.superview convertRect:fromImageView.frame toView:containerView];
+        
+        toView.alpha = 0;
+        toVC.visualCell.imageView.hidden = YES;
+        
+        NSTimeInterval duration = [self transitionDuration:transitionContext];
+        
+        [UIView animateWithDuration:duration animations:^{
+            dummyView.frame = [self presentRectWithImageView:dummyView];
+            toView.alpha = 1;
+        } completion:^(BOOL finished) {
+            toVC.visualCell.imageView.hidden = NO;
+            [dummyView removeFromSuperview];
+            [transitionContext completeTransition:YES];
+        }];
+    }
+    else {
+        
+        CATransition *transition = [CATransition animation];
+        
+        transition.type = @"fade";
+        transition.duration = 3;
+        
+        [toView.layer addAnimation:transition forKey:nil];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [transitionContext completeTransition:YES];
+        });
+    }
     
-    // 复制转场的ImageView
-    UIImageView *dummyView = [[UIImageView alloc] initWithImage: image];
-    
-    [toView addSubview:dummyView];
-    
-    UIView *fromView = self.presentItem.thumbView;
-    
-    // 坐标系转换
-    dummyView.frame = [fromView.superview convertRect:fromView.frame toView:containerView];
-    
-    toView.alpha = 0;
-    toVC.visualCell.imageView.hidden = YES;
-    
-    NSTimeInterval duration = [self transitionDuration:transitionContext];
-    
-    [UIView animateWithDuration:duration animations:^{
-        dummyView.frame = [self presentRectWithImageView:dummyView];
-        toView.alpha = 1;
-    } completion:^(BOOL finished) {
-        toVC.visualCell.imageView.hidden = NO;
-        [dummyView removeFromSuperview];
-        [transitionContext completeTransition:YES];
-    }];
 }
 
 - (void)dismissAnimateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {

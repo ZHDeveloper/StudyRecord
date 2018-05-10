@@ -62,7 +62,7 @@ NSString *const demoCellIdentifier = @"demoCellIdentifier";
         PhotoBrowserItem *item = [[PhotoBrowserItem alloc] init];
         item.largeImageURL = [NSURL URLWithString:url];
         NSInteger index = [cell.photoUrls.pic_urls indexOfObject:url];
-        item.thumbView = cell.visibaleImageViews[index];
+//        item.thumbView = cell.visibaleImageViews[index];
         [array addObject:item];
     }
     
