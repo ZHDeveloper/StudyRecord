@@ -88,8 +88,6 @@
     self.scrollView.contentSize = CGSizeMake(screenSize.width*self.photoItems.count, screenSize.height);
     
     self.scrollView.contentOffset = CGPointMake(screenSize.width*self.currentIndex, 0);
-    
-    [self scrollViewDidScroll:self.scrollView];
 }
 
 #pragma mark = Gestures
@@ -240,7 +238,13 @@
     } completion:nil];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [self scrollViewDidScroll:_scrollView];
+}
 
+#pragma mark - Getter & Setter
 - (PhotoBrowserCell *)visualCell {
     
     NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;

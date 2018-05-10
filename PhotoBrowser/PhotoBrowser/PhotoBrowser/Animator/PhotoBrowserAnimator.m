@@ -39,7 +39,7 @@
 }
 
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
-    return 0.25;
+    return 0.3;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -56,6 +56,8 @@
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
     // 将展现的控制器视图添加到容器视图
     [containerView addSubview:toView];
+    
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
     
     UIView *fromImageView = self.presentItem.thumbView;
     
@@ -76,29 +78,27 @@
         toView.alpha = 0;
         toVC.visualCell.imageView.hidden = YES;
         
-        NSTimeInterval duration = [self transitionDuration:transitionContext];
-        
         [UIView animateWithDuration:duration animations:^{
             dummyView.frame = [self presentRectWithImageView:dummyView];
             toView.alpha = 1;
         } completion:^(BOOL finished) {
             toVC.visualCell.imageView.hidden = NO;
             [dummyView removeFromSuperview];
-            [transitionContext completeTransition:YES];
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
         }];
     }
     else {
         
-        CATransition *transition = [CATransition animation];
+        toView.alpha = 0.0;
+        [toView.layer setValue:@(0.95) forKey:@"transform.scale"];
+
+        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut animations:^{
+            toView.alpha = 1;
+            [toView.layer setValue:@(1) forKey:@"transform.scale"];
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        }];
         
-        transition.type = @"fade";
-        transition.duration = 3;
-        
-        [toView.layer addAnimation:transition forKey:nil];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [transitionContext completeTransition:YES];
-        });
     }
     
 }
@@ -111,32 +111,44 @@
     
     UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
 
-    // 获取需要动画的ImageView，并添加容器视图
-    UIImageView *fromImageView = fromVC.visualCell.imageView;
-    
-    // 坐标系转换
-    fromImageView.frame = [fromImageView.superview convertRect:fromImageView.frame toView:containerView];
-    
-    // 添加的容器视图
-    [containerView addSubview:fromImageView];
-    
-    PhotoBrowserItem *item = fromVC.photoItems[fromVC.currentIndex];
-    
-    // 计算目标偏移Rect
-    CGRect toRect = [item.thumbView.superview convertRect:item.thumbView.frame toView:containerView];
-    
     NSTimeInterval duration = [self transitionDuration:transitionContext];
-    
-    [UIView animateWithDuration:duration animations:^{
+
+    PhotoBrowserItem *item = fromVC.photoItems[fromVC.currentIndex];
+
+    if (item.thumbView) {
         
-        fromView.alpha = 0;
-        fromImageView.frame = toRect;
+        // 获取需要动画的ImageView，并添加容器视图
+        UIImageView *fromImageView = fromVC.visualCell.imageView;
         
-    } completion:^(BOOL finished) {
-        [fromImageView removeFromSuperview];
-        [transitionContext completeTransition:YES];
-    }];
-    
+        // 坐标系转换
+        fromImageView.frame = [fromImageView.superview convertRect:fromImageView.frame toView:containerView];
+        
+        // 添加的容器视图
+        [containerView addSubview:fromImageView];
+        
+        // 计算目标偏移Rect
+        CGRect toRect = [item.thumbView.superview convertRect:item.thumbView.frame toView:containerView];
+        
+        [UIView animateWithDuration:duration animations:^{
+            
+            fromView.alpha = 0;
+            fromImageView.frame = toRect;
+            
+        } completion:^(BOOL finished) {
+            [fromImageView removeFromSuperview];
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        }];
+        
+    }
+    else {
+        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut animations:^{
+            fromView.alpha = 0.0;
+            [fromView.layer setValue:@(0.95) forKey:@"transform.scale"];
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        }];
+
+    }
 }
 
 /// 根据图像计算展现目标尺寸
