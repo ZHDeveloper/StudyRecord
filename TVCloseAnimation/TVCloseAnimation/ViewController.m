@@ -18,17 +18,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
     TVCloseView *view = [[TVCloseView alloc] initWithFrame:self.view.bounds];
     
     [self.view addSubview:view];
     
     [view startAnimation];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
 }
 
 @end
