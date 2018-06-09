@@ -8,3 +8,5 @@
 - ScrollView图片缩放
 - 图片浏览器自定义转场动画
 - 仿淘宝商品分类转场动画
+- __attribute__
+- SkeletonView的OC Demo
