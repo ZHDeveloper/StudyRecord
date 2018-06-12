@@ -20,6 +20,8 @@
 		02D9DDD520CF6C8B00734908 /* SubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9DDD420CF6C8B00734908 /* SubView.swift */; };
 		02D9DDD720CF727600734908 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9DDD620CF727600734908 /* SecondViewController.swift */; };
 		02D9DDDB20CF75C800734908 /* UIView+NSLayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9DDDA20CF75C800734908 /* UIView+NSLayoutAnchor.swift */; };
+		02D9DDDF20CF79D500734908 /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9DDDE20CF79D500734908 /* UITableView+Reusable.swift */; };
+		02D9DDE120CF7BF700734908 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9DDE020CF7BF700734908 /* Defaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		02D9DDD420CF6C8B00734908 /* SubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubView.swift; sourceTree = "<group>"; };
 		02D9DDD620CF727600734908 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		02D9DDDA20CF75C800734908 /* UIView+NSLayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NSLayoutAnchor.swift"; sourceTree = "<group>"; };
+		02D9DDDE20CF79D500734908 /* UITableView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
+		02D9DDE020CF7BF700734908 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				02D9DDC320CF6ADB00734908 /* ExtKit.h */,
+				02D9DDE020CF7BF700734908 /* Defaults.swift */,
 				02D9DDD820CF758500734908 /* Extension */,
 				02D9DDCF20CF6B2D00734908 /* Protocol */,
 				02D9DDC420CF6ADB00734908 /* Info.plist */,
@@ -147,6 +152,7 @@
 		02D9DDD920CF758500734908 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				02D9DDDE20CF79D500734908 /* UITableView+Reusable.swift */,
 				02D9DDDA20CF75C800734908 /* UIView+NSLayoutAnchor.swift */,
 			);
 			path = UIView;
@@ -279,6 +285,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				02D9DDDB20CF75C800734908 /* UIView+NSLayoutAnchor.swift in Sources */,
+				02D9DDE120CF7BF700734908 /* Defaults.swift in Sources */,
+				02D9DDDF20CF79D500734908 /* UITableView+Reusable.swift in Sources */,
 				02D9DDD120CF6B8400734908 /* Nibable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

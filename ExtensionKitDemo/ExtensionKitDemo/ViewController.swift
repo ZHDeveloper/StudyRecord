@@ -9,12 +9,23 @@
 import UIKit
 import ExtKit
 
+struct Person: Codable {
+    var name: String?
+    var age: Int?
+}
+
 class ViewController: UIViewController, Nibable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+//        let person = Person(name: "张三", age: 4)
+//
+//        ValueDefaults[Key<Person>("k_person")] = person
+//        
+//        let psn = ValueDefaults[Key<Person>("k_person")]
+//        
+//        print(psn ?? "")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -29,4 +40,3 @@ class ViewController: UIViewController, Nibable {
     }
 
 }
-
