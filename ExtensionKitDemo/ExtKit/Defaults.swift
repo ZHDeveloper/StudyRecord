@@ -8,7 +8,7 @@
 
 import Foundation
 
-public var ValueDefaults = Defaults.shared
+public let ValueDefaults = UserDefaults.standard
 
 public protocol DefaultsKeyable {
     associatedtype Target: Codable
@@ -23,15 +23,11 @@ public struct Key<ValueType: Codable>: DefaultsKeyable {
     }
 }
 
-public struct Defaults {
-    
-    public static let shared: Defaults = Defaults()
-    
-    private let userDefaults = UserDefaults.standard
+extension UserDefaults {
     
     public subscript<T: DefaultsKeyable>(sc: T) -> T.Target? {
         get {
-            guard let data = userDefaults.data(forKey: sc.key) else {
+            guard let data = self.data(forKey: sc.key) else {
                 return nil
             }
             do {
@@ -47,14 +43,14 @@ public struct Defaults {
         }
         set {
             if isSwiftCodableType(T.Target.self) || isFoundationCodableType(T.Target.self) || newValue == nil {
-                userDefaults.set(newValue, forKey: sc.key)
+                self.set(newValue, forKey: sc.key)
                 return
             }
             do {
                 let encoder = JSONEncoder()
                 let encoded = try encoder.encode(newValue)
-                userDefaults.set(encoded, forKey: sc.key)
-                userDefaults.synchronize()
+                self.set(encoded, forKey: sc.key)
+                self.synchronize()
             } catch {
                 #if DEBUG
                 print(error)
@@ -81,4 +77,3 @@ public struct Defaults {
         }
     }
 }
-
