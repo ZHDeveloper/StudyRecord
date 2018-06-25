@@ -1,0 +1,22 @@
+//
+//  Release.xcconfig
+//  XCConfig
+//
+//  Created by ZhiHua Shen on 2018/6/25.
+//  Copyright © 2018年 ZhiHua Shen. All rights reserved.
+//
+
+// 与CocoaPods兼容
+#include "Pods/Target Support Files/Pods-XCConfig/Pods-XCConfig.release.xcconfig"
+#include "Commons.xcconfig"
+
+BaseUrl = @"www.google.com"
+
+AppIconAsset = AppIcon-Enterprise
+
+Button_Title = 点我啊
+
+// 生成预编译的宏定义
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) BaseUrl='$(BaseUrl)'
+
+

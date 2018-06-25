@@ -1,0 +1,12 @@
+//
+//  Commons.xcconfig
+//  XCConfig
+//
+//  Created by ZhiHua Shen on 2018/6/25.
+//  Copyright © 2018年 ZhiHua Shen. All rights reserved.
+//
+
+kSearchPath = "/usr/local/bin"
+kAppName = 测试
+
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) kSearchPath='$(kSearchPath)'

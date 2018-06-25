@@ -1,0 +1,14 @@
+//
+//  Stage.xcconfig
+//  XCConfig
+//
+//  Created by ZhiHua Shen on 2018/6/25.
+//  Copyright © 2018年 ZhiHua Shen. All rights reserved.
+//
+
+#include "Pods/Target Support Files/Pods-XCConfig/Pods-XCConfig.stage.xcconfig"
+#include "Commons.xcconfig"
+
+Button_Title = 一个按钮
+
+AppIconAsset = AppIcon
